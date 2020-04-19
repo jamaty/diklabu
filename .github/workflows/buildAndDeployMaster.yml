@@ -19,9 +19,7 @@ jobs:
         run: npm install
 
       - name: Install Ionic CLI
-        uses: coturiv/setup-ionic@v1
-        with:
-          ionic-version: 6.6.0
+        run: sudo npm install -g @ionic/cli
 
       - name: Build Ionic
         run: ionic build --prod --release
