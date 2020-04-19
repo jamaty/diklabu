@@ -1,5 +1,7 @@
 # Diklabu
 
+![Build and Deploy](https://github.com/jamaty/diklabu/workflows/Build%20and%20Deploy/badge.svg)
+
 > Hybride Webanwendung, die Lehrer glücklich macht
 
 ## Produktvision
