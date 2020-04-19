@@ -1,11 +1,11 @@
 name: Build and Deploy
 on:
   push:
-    branches: 
-    - master
+    branches:
+      - master
   pull_request:
     branches:
-    - master
+      - master
 
 jobs:
   build:
@@ -14,25 +14,25 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@master
-        
+
       - name: Install Dependencies
         run: npm install
-      
+
       - name: Install Ionic CLI
-        run: npm install -g @ionic/cli
-        
+        run: npm install @ionic/cli
+
       - name: Build Ionic
         run: ionic build --prod --release
-        
+
   deploy:
-      name: Deploy
-      needs: build
-      runs-on: ubuntu-latest
-      steps:
-        - name: Deploy to Firebase
-          uses: w9jds/firebase-action@v1.3.0
-          with:
-            args: deploy --only hosting
-          env:
-            FIREBASE_TOKEN: ${{ secrets.SuperSecret }}
-            FIREBASE_PROJECT: diklabu-2020
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@v1.3.0
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.SuperSecret }}
+          FIREBASE_PROJECT: diklabu-2020
