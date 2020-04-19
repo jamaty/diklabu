@@ -1,0 +1,8 @@
+//Deploy local web server:
+ionic serve
+
+//Build production release:
+ionic build --prod --release
+
+//Deploy to firebase:
+firebase deploy

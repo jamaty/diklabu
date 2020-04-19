@@ -1,0 +1,7 @@
+{
+  "name": "diklabu",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
