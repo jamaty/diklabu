@@ -14,38 +14,38 @@ export class AppComponent implements OnInit {
   public appPages = [
     {
       title: 'Posteingang',
-      url: 'test',
+      url: 'folder/Posteingang',
       icon: 'mail'
     },
     {
       title: 'Kalender',
-      url: 'klassensteckbrief',
-      icon: 'mail'
+      url: 'folder/Kalender',
+      icon: 'calendar'
     },
     {
       title: 'Anwesenheit',
       url: 'anwesenheit',
-      icon: 'mail'
+      icon: 'book'
     },
     {
       title: 'Krankmeldung',
-      url: 'klassensteckbrief',
-      icon: 'mail'
+      url: 'folder/Krankmeldung',
+      icon: 'bandage'
     },
     {
       title: 'Schülermonitor',
-      url: 'klassensteckbrief',
-      icon: 'mail'
+      url: 'folder/Schülermonitor',
+      icon: 'man'
     },
     {
       title: 'Arbeitsgemeinschaften',
-      url: 'klassensteckbrief',
-      icon: 'mail'
+      url: 'folder/Arbeitsgemeinschaften',
+      icon: 'people'
     },
     {
       title: 'Klassensteckbriefe',
       url: 'klassensteckbrief',
-      icon: 'mail'
+      icon: 'albums'
     }
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
