@@ -2,15 +2,15 @@
 
 ![Build and Deploy](https://github.com/jamaty/diklabu/workflows/Build%20and%20Deploy/badge.svg)
 
-> Hybride Webanwendung, die Lehrer glücklich macht
+> Hybrid app making teachers happy
 
-## Produktvision
+## Vision
 
-Für Erziehungsberechtigte, Schulpflichtige, deren Lehr- und Erziehungspersonal sowie für die Schulleitung, die auf der Suche nach einem zentralen Informationskanal bezogen auf schulische Angelegenheiten sind, ist das digitale Klassenbuch Diklabu ein zentrales Informations- und Kommunikationssystem, das die heterogenen Prozesse des schulischen Alltags mitgestaltet und einen effizienten Austausch zwischen den Beteiligten ermöglicht.
+For parents, schoolchildren, their teaching and educational staff as well as for the school management, who are looking for a central information channel related to school matters, the digital class book Diklabu is a central information and communication system that helps to shape the heterogeneous processes of everyday school life and enables an efficient exchange between the participants.
 
 ![Splash Image](resources/teaser.png)
 
-## Wichtige Befehle
+## Important Commands
 
 ```sh
 // Install Dependencies
@@ -24,14 +24,14 @@ ionic build --prod --release
 
 // Deploy to Firebase
 firebase deploy
-
 ```
 
-## Entwicklungsrichtlinien
+## Developer Guidelines
 
-_tbd_
+Please watch this and act accordingly<br>
+https://www.youtube.com/watch?v=JTE2Fn_sCZs
 
-## Versionen
+## Version History
 
 - 0.0.1
   - Work in progress
