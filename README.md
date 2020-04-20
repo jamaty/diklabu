@@ -13,14 +13,18 @@ Für Erziehungsberechtigte, Schulpflichtige, deren Lehr- und Erziehungspersonal 
 ## Wichtige Befehle
 
 ```sh
-//Deploy web server
-$ ionic serve
+// Install Dependencies
+npm install
 
-//Build production release
-$ ionic build --prod --release
+// Install Ionic CLI
+npm install -g @ionic/cli
 
-//Deploy to firebase
-$ firebase deploy
+// Build Ionic production release
+ionic build --prod --release
+
+// Deploy to Firebase
+firebase deploy
+
 ```
 
 ## Entwicklungsrichtlinien
