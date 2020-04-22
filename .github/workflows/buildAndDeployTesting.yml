@@ -2,6 +2,11 @@ name: Build and Deploy Testing
 on:
   push:
     branches:
+      - testing/*
+      - testing/**
+      - 'testing/*'
+      - 'testing/**'
+      - testing**
       - 'testing**'
 
 jobs:
