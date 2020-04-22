@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "diklabu-2020"
+  },
+  "targets": {
+    "diklabu-2020": {
+      "hosting": {
+        "prod": [
+          "diklabu-2020"
+        ],
+        "test": [
+          "diklabu-test"
+        ]
+      }
+    }
   }
 }
