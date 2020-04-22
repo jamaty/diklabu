@@ -1,8 +1,8 @@
-name: Build and Deploy Master
+name: Build and Deploy Testing
 on:
   push:
     branches:
-      - master
+      - testing*
 
 jobs:
   build:
@@ -24,7 +24,7 @@ jobs:
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@v1.3.0
         with:
-          args: deploy --only hosting:prod
+          args: deploy --only hosting:test
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           FIREBASE_PROJECT: diklabu-2020
