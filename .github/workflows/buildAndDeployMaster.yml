@@ -6,9 +6,6 @@ on:
     paths-ignore: 
       - '.github/**'
 
-  paths-ignore: 
-      - '.github/**'
-
 jobs:
   build:
     name: Build and Deploy Master
