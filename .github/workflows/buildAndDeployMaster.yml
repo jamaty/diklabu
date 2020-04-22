@@ -4,13 +4,16 @@ on:
     branches:
       - master
 
+  paths-ignore: 
+      - '.github/**'
+
 jobs:
   build:
     name: Build and Deploy
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
 
       - name: Install Dependencies
         run: npm install
@@ -27,4 +30,3 @@ jobs:
           args: deploy --only hosting:prod
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-          FIREBASE_PROJECT: diklabu-2020
