@@ -3,6 +3,13 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
+
+    <ion-buttons slot ="end" *ngIf="dev">
+      <ion-button>
+        <ion-icon slot="icon-only" name="hammer"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
     <ion-title>{{ folder }}</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -16,6 +23,6 @@
 
   <div id="container">
     <strong class="capitalize">{{ folder }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <p>This is the production environment, explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
   </div>
 </ion-content>
