@@ -1,14 +1,15 @@
-name: Build and Deploy Master
+name: Build and Deploy Testing
 on:
   push:
     branches:
-      - master
+      - 'testing/*'
+        
     paths-ignore: 
       - '.github/**'
 
 jobs:
   build:
-    name: Build and Deploy Master
+    name: Build and Deploy Testing
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -21,11 +22,11 @@ jobs:
         run: sudo npm install -g @ionic/cli
 
       - name: Build Ionic
-        run: ionic build --prod --release
+        run: ionic build --release
 
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@v1.3.0
         with:
-          args: deploy --only hosting:prod
+          args: deploy --only hosting:test
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
