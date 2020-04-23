@@ -1,6 +1,7 @@
 # Diklabu
 
-![Build and Deploy](https://github.com/jamaty/diklabu/workflows/Build%20and%20Deploy/badge.svg)
+![Build and Deploy Testing](https://github.com/jamaty/diklabu/workflows/Build%20and%20Deploy%20Testing/badge.svg)
+![Build and Deploy Master](https://github.com/jamaty/diklabu/workflows/Build%20and%20Deploy%20Master/badge.svg)
 
 > Hybrid app making teachers happy
 
