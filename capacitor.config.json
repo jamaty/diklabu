@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "diklabu",
+  "appId": "com.diklabu.app",
+  "appName": "Diklabu",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
