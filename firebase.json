@@ -1,12 +1,9 @@
 {
-  "hosting": [{
-      "target":"prod",
+  "hosting": [
+    {
+      "target": "prod",
       "public": "www",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
           "source": "**",
@@ -15,13 +12,9 @@
       ]
     },
     {
-      "target":"test",
+      "target": "test",
       "public": "www",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
           "source": "**",
