@@ -46,9 +46,13 @@ export class AppComponent implements OnInit {
       title: 'Klassensteckbriefe',
       url: 'klassensteckbrief',
       icon: 'albums'
+    },
+    {
+      title: 'Personen',
+      url: 'personen',
+      icon: 'people'
     }
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
   constructor(
     private platform: Platform,
