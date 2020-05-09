@@ -7,8 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  @Input() pageTitle = ''
-  constructor( ) { }
+  @Input() pageTitle = '';
+
+  constructor() { }
 
   ngOnInit() { }
 
