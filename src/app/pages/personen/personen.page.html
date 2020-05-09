@@ -8,15 +8,65 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  <form (ngSubmit)="onSubmit()">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label>Vorname <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" [(ngModel)]="person.vorname" name="vorname"></ion-input>
+  
+        <ion-label>Nachname <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" [(ngModel)]="person.nachname" name="nachname"></ion-input>
+      
+        <ion-label>Rolle <ion-text color="danger">*</ion-text></ion-label>
+        <ion-select placeholder="bitte auswählen" interface="popover" [(ngModel)]="person.rolle" name="rolle">
+          <ion-select-option value="Lehrer">Lehrer</ion-select-option>
+          <ion-select-option value="Eltern">Eltern</ion-select-option>
+          <ion-select-option value="Schüler">Schüler</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  
+    <div class="ion-padding">
+      <ion-button type="submit" expand="block">
+        Person hinzufügen
+      </ion-button>
+    </div>
+  </form>
+
   <ion-list>
-    <ion-item detail *ngFor="let person of personen">
+    <ion-item *ngFor="let person of personen">
       <ion-avatar slot="start">
         <img src="../../../assets/img/schueler.jpg">
       </ion-avatar>
-      <ion-label>
+      <ion-label *ngIf="person != personToEdit">
         <h2>{{person.vorname + ' ' + person.nachname}}</h2>
         <h3>{{person.rolle}}</h3>
       </ion-label>
+
+      <ion-item *ngIf="person == personToEdit">
+        <ion-label>Vorname <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" [(ngModel)]="person.vorname" name="vorname"></ion-input>
+
+        <ion-label>Nachname <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" [(ngModel)]="person.nachname" name="nachname"></ion-input>
+      
+        <ion-label>Rolle <ion-text color="danger">*</ion-text></ion-label>
+        <ion-select placeholder="bitte auswählen" interface="popover" [(ngModel)]="person.rolle" name="rolle">
+          <ion-select-option value="Lehrer">Lehrer</ion-select-option>
+          <ion-select-option value="Eltern">Eltern</ion-select-option>
+          <ion-select-option value="Schüler">Schüler</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-icon (click)="updatePerson(person)" name="save" slot="end" *ngIf="person == personToEdit"></ion-icon>
+      <ion-icon (click)="editPerson($event, person)" name="pencil" slot="end" *ngIf="person != personToEdit"></ion-icon>
+      <ion-icon (click)="deletePerson($event, person)" name="trash" slot="end"></ion-icon>
     </ion-item>
   </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

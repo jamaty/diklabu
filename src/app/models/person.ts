@@ -1,5 +1,6 @@
 export interface Person {
-    vorname?:string;
-    nachname?:string;
-    rolle?:string;
+    id:string;
+    vorname:string;
+    nachname:string;
+    rolle:string;
 }
