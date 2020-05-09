@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
     },
     {
       title: 'Krankmeldung',
-      url: 'folder/Krankmeldung',
+      url: 'krankmeldung',
       icon: 'bandage'
     },
     {

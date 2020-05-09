@@ -9,12 +9,14 @@ import { AnwesenheitPageRoutingModule } from './anwesenheit-routing.module';
 import { AnwesenheitPage } from './anwesenheit.page';
 
 import { ListSchuelerComponent } from '../../components/list-schueler/list-schueler.component'
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    ComponentsModule,
     AnwesenheitPageRoutingModule
   ],
   declarations: [AnwesenheitPage, ListSchuelerComponent]

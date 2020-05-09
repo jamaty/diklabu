@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from "../../components/header/header.component";
-
 
 @Component({
   selector: 'app-kalender',
@@ -8,10 +6,8 @@ import { HeaderComponent } from "../../components/header/header.component";
   styleUrls: ['./kalender.page.scss'],
 })
 export class KalenderPage implements OnInit {
+  constructor( ) { }
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {  }
 
 }

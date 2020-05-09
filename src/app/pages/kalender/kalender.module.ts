@@ -7,15 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { KalenderPageRoutingModule } from './kalender-routing.module';
 
 import { KalenderPage } from './kalender.page';
-import { HeaderComponent } from "../../components/header/header.component";
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    ComponentsModule,
     KalenderPageRoutingModule
   ],
-  declarations: [KalenderPage, HeaderComponent]
+  declarations: [KalenderPage]
 })
 export class KalenderPageModule {}
