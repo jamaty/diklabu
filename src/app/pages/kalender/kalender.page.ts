@@ -9,7 +9,7 @@ import { HeaderComponent } from "../../components/header/header.component";
 })
 export class KalenderPage implements OnInit {
 
-  constructor(private header: HeaderComponent) { }
+  constructor() { }
 
   ngOnInit() {
   }
