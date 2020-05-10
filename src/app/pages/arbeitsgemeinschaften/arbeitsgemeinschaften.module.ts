@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
-import { SchuelermonitorPageRoutingModule } from './schuelermonitor-routing.module';
-import { SchuelermonitorPage } from './schuelermonitor.page';
+import { ArbeitsgemeinschaftenPageRoutingModule } from './arbeitsgemeinschaften-routing.module';
+import { ArbeitsgemeinschaftenPage } from './arbeitsgemeinschaften.page';
 import { DiklabuModule } from "../../components/diklabu.module";
+
 
 @NgModule({
   imports: [
@@ -13,8 +14,8 @@ import { DiklabuModule } from "../../components/diklabu.module";
     FormsModule,
     IonicModule,
     DiklabuModule,
-    SchuelermonitorPageRoutingModule
+    ArbeitsgemeinschaftenPageRoutingModule
   ],
-  declarations: [SchuelermonitorPage]
+  declarations: [ArbeitsgemeinschaftenPage]
 })
-export class SchuelermonitorPageModule {}
+export class ArbeitsgemeinschaftenPageModule {}

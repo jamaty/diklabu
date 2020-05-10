@@ -9,4 +9,4 @@ import { HeaderComponent } from './header/header.component';
  declarations: [ HeaderComponent ],
  exports:      [ HeaderComponent, CommonModule, FormsModule, IonicModule ]
 })
-export class ComponentsModule { }
+export class DiklabuModule { }

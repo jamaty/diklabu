@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { LandingPage } from './landing.page';
+import { ArbeitsgemeinschaftenPage } from './arbeitsgemeinschaften.page';
 
-describe('LandingPage', () => {
-  let component: LandingPage;
-  let fixture: ComponentFixture<LandingPage>;
+describe('ArbeitsgemeinschaftenPage', () => {
+  let component: ArbeitsgemeinschaftenPage;
+  let fixture: ComponentFixture<ArbeitsgemeinschaftenPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LandingPage ],
+      declarations: [ ArbeitsgemeinschaftenPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LandingPage);
+    fixture = TestBed.createComponent(ArbeitsgemeinschaftenPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

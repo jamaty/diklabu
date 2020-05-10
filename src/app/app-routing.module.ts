@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Posteingang',
+    redirectTo: 'posteingang',
     pathMatch: 'full',
   },
   {
@@ -16,16 +16,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/anwesenheit/anwesenheit.module').then((m) => m.AnwesenheitPageModule),
   },
   {
-    path: 'klassensteckbrief',
+    path: 'klassen',
     loadChildren: () => import('./pages/klassensteckbrief/klassensteckbrief.module').then((m) => m.KlassensteckbriefPageModule),
   },
   {
-    path: 'personen',
+    path: 'benutzerverwaltung',
     loadChildren: () => import('./pages/personen/personen.module').then((m) => m.PersonenPageModule),
-  },
-  {
-    path: 'landing',
-    loadChildren: () => import('./pages/landing/landing.module').then((m) => m.LandingPageModule),
   },
   {
     path: 'posteingang',
@@ -43,6 +39,11 @@ const routes: Routes = [
     path: 'schuelermonitor',
     loadChildren: () => import('./pages/schuelermonitor/schuelermonitor.module').then( m => m.SchuelermonitorPageModule)
   },
+  {
+    path: 'arbeitsgemeinschaften',
+    loadChildren: () => import('./pages/arbeitsgemeinschaften/arbeitsgemeinschaften.module').then( m => m.ArbeitsgemeinschaftenPageModule)
+  },
+
 
 ];
 

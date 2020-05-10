@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   public appPages = [
     {
       title: 'Posteingang',
-      url: 'folder/Posteingang',
+      url: 'posteingang',
       icon: 'mail'
     },
     {
@@ -36,23 +36,23 @@ export class AppComponent implements OnInit {
     },
     {
       title: 'Schülermonitor',
-      url: 'folder/Schülermonitor',
+      url: 'schuelermonitor',
       icon: 'man'
     },
     {
       title: 'Arbeitsgemeinschaften',
-      url: 'folder/Arbeitsgemeinschaften',
+      url: 'arbeitsgemeinschaften',
       icon: 'people'
     },
     {
-      title: 'Klassensteckbriefe',
-      url: 'klassensteckbrief',
+      title: 'Klassenübersicht',
+      url: 'klassen',
       icon: 'albums'
     },
     {
-      title: 'Personen',
-      url: 'personen',
-      icon: 'people'
+      title: 'Benutzerverwaltung',
+      url: 'benutzerverwaltung',
+      icon: 'cog'
     }
   ];
 
@@ -73,9 +73,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    const path = window.location.pathname.split('folder/')[1];
+    const path = window.location.pathname;
     if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
+      this.selectedIndex = this.appPages.findIndex(page => page.url.toLowerCase() === path.toLowerCase());
     }
   }
 }
