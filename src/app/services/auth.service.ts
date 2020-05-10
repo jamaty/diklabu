@@ -31,6 +31,12 @@ export class AuthService {
     )
   }
 
+  async mailSignin() {
+    const provider = new auth.EmailAuthProvider();
+    const credential = await this.fa.signInWithPopup(provider);
+    return this.updateUserData(credential.user);
+  }
+
   async googleSignin() {
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.fa.signInWithPopup(provider);

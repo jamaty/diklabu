@@ -42,7 +42,11 @@ const routes: Routes = [
   {
     path: 'arbeitsgemeinschaften',
     loadChildren: () => import('./pages/arbeitsgemeinschaften/arbeitsgemeinschaften.module').then( m => m.ArbeitsgemeinschaftenPageModule)
+  },  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
+
 
 
 ];
