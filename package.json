@@ -11,7 +11,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "local": "ionic serve --host=192.168.0.2 --public-host=local.diklabu.com",
-    "android": "npx cap add android"
+    "android": "npx cap add android",
+    "deployFunctions": "firebase deploy --only functions"
   },
   "private": true,
   "dependencies": {
