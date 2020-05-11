@@ -14,6 +14,6 @@ export const helloWorld = functions.region('europe-west3').https.onRequest((requ
 export const addMessage = functions.region('europe-west3').https.onRequest(async (request, response) => {
   admin.initializeApp();
   const original = request.query.text;
-  const snapshot = await admin.database().ref('/messages').push({ original: original });
-  response.redirect(303, snapshot.ref.toString());
+  const snapshot = await admin.firestore().collection('/messages').add({ original: original });
+  response.send('Added message with id '+snapshot.id.toString());
 });
