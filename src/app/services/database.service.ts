@@ -1,46 +1,63 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore'
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+  AngularFirestoreDocument,
+} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Person } from '../models/person'
+import { Person } from '../models/person';
+import { Message } from '../models/message';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DatabaseService {
   personenCollection: AngularFirestoreCollection<Person>;
-  personDoc : AngularFirestoreDocument<Person>;
+  personDoc: AngularFirestoreDocument<Person>;
   personen: Observable<Person[]>;
+
+  msgCollection: AngularFirestoreCollection<Message>;
 
   constructor(public fs: AngularFirestore) {
     //this.personen = this.fs.collection('Personen').valueChanges();
 
-    this.personenCollection = this.fs.collection('Personen', ref => ref.orderBy('vorname','asc'));
+    this.personenCollection = this.fs.collection('Personen', (ref) =>
+      ref.orderBy('vorname', 'asc')
+    );
 
-    this.personen = this.personenCollection.snapshotChanges().pipe(map(changes => {
-      return changes.map(a => {
-        const data = a.payload.doc.data() as Person;
-        data.id = a.payload.doc.id;
-        return data;
+    this.msgCollection = this.fs.collection('messages');
+
+    this.personen = this.personenCollection.snapshotChanges().pipe(
+      map((changes) => {
+        return changes.map((a) => {
+          const data = a.payload.doc.data() as Person;
+          data.id = a.payload.doc.id;
+          return data;
+        });
       })
-    }))
+    );
   }
 
-  getPersonen(){
+  getPersonen() {
     return this.personen;
   }
 
-  addPerson(person: Person){
+  addPerson(person: Person) {
     this.personenCollection.add(person);
   }
 
-  updatePerson(person: Person){
-    this.personDoc = this.fs.doc('Personen/'+person.id);
+  updatePerson(person: Person) {
+    this.personDoc = this.fs.doc('Personen/' + person.id);
     this.personDoc.update(person);
   }
 
-  deletePerson(person: Person){
-    this.personDoc = this.fs.doc('Personen/'+person.id);
+  deletePerson(person: Person) {
+    this.personDoc = this.fs.doc('Personen/' + person.id);
     this.personDoc.delete();
+  }
+
+  addMessage(msg: Message) {
+    this.msgCollection.add(msg);
   }
 }

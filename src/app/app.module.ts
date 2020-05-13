@@ -10,7 +10,13 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { firebaseConfig } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireAnalyticsModule, UserTrackingService, ScreenTrackingService } from '@angular/fire/analytics';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
+import {
+  AngularFireAnalyticsModule,
+  UserTrackingService,
+  ScreenTrackingService,
+} from '@angular/fire/analytics';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -25,15 +31,18 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
-    AngularFireAnalyticsModule
+    AngularFireMessagingModule,
+    AngularFireFunctionsModule,
+    AngularFireAnalyticsModule,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     UserTrackingService,
     ScreenTrackingService,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: REGION, useValue: 'europe-west3' },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -25,14 +25,34 @@ export const addMessage = functions
     response.send('Added message with id ' + snapshot.id.toString());
   });
 
-export const notifyUser = functions
+// ---
+// Tutorial section
+// ---
+
+export const subscribeToTopic = functions
+  .region('europe-west3')
+  .https.onCall(async (data, context) => {
+    await admin.messaging().subscribeToTopic(data.token, data.topic);
+
+    return `subscribed to ${data.topic}`;
+  });
+
+export const unsubscribeFromTopic = functions
+  .region('europe-west3')
+  .https.onCall(async (data, context) => {
+    await admin.messaging().unsubscribeFromTopic(data.token, data.topic);
+
+    return `unsubscribed from ${data.topic}`;
+  });
+
+export const sendOnMessageCreate = functions
   .region('europe-west3')
   .firestore.document('messages/{messageId}')
   .onCreate(async (snapshot) => {
     const message = snapshot.data();
 
     const notification: admin.messaging.Notification = {
-      title: 'Diklabu ist toll!',
+      title: 'Sie haben eine neue Nachricht!',
       body: message!.original,
     };
 
@@ -44,12 +64,12 @@ export const notifyUser = functions
           icon: 'https://bit.ly/3fEqm6G',
           actions: [
             {
-              action: 'like',
-              title: ' Yaaay!',
+              action: 'show',
+              title: ' Anzeigen',
             },
             {
-              action: 'dislike',
-              title: 'Boooo!',
+              action: 'ignore',
+              title: 'Ignorieren',
             },
           ],
         },
