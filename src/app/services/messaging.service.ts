@@ -20,7 +20,9 @@ export class MessagingService {
     private afm: AngularFireMessaging,
     private aff: AngularFireFunctions,
     private toastController: ToastController
-  ) {}
+  ) {
+    this.listen();
+  }
 
   async makeToast(message) {
     const toast = await this.toastController.create({
@@ -44,15 +46,18 @@ export class MessagingService {
     return this.afm.requestToken.subscribe((token) => (this.token = token));
   }
 
-  showMessages() {
-    return this.afm.messages.subscribe((msg) => {
-      const body: any = (msg as any).notification.body;
-      this.makeToast(body);
-    });
+  listen() {
+    return this.afm.messages.pipe(
+      tap((msg) => {
+        // TODO in app notifications do not work for some reason
+        console.log(msg);
+        const body: any = (msg as any).notification.body;
+        this.makeToast(body);
+      })
+    );
   }
 
   sub(topic) {
-    console.log(topic);
     this.aff
       .httpsCallable('subscribeToTopic')({ topic, token: this.token })
       .pipe(tap((_) => this.makeToast(`subscribed to ${topic}`)))
@@ -62,7 +67,7 @@ export class MessagingService {
   unsub(topic) {
     this.aff
       .httpsCallable('unsubscribeFromTopic')({ topic, token: this.token })
-      .pipe(tap((_) => this.makeToast(`unsubscribed to ${topic}`)))
+      .pipe(tap((_) => this.makeToast(`unsubscribed from ${topic}`)))
       .subscribe();
   }
 }
