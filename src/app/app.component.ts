@@ -9,7 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+  styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
@@ -17,50 +17,49 @@ export class AppComponent implements OnInit {
     {
       title: 'Posteingang',
       url: 'posteingang',
-      icon: 'mail'
+      icon: 'mail',
     },
     {
       title: 'Kalender',
       url: 'kalender',
-      icon: 'calendar'
+      icon: 'calendar',
     },
     {
       title: 'Anwesenheit',
       url: 'anwesenheit',
-      icon: 'book'
+      icon: 'book',
     },
     {
       title: 'Krankmeldung',
       url: 'krankmeldung',
-      icon: 'bandage'
+      icon: 'bandage',
     },
     {
       title: 'Schülermonitor',
       url: 'schuelermonitor',
-      icon: 'man'
+      icon: 'man',
     },
     {
       title: 'Arbeitsgemeinschaften',
       url: 'arbeitsgemeinschaften',
-      icon: 'people'
+      icon: 'people',
     },
     {
       title: 'Klassenübersicht',
       url: 'klassen',
-      icon: 'albums'
+      icon: 'albums',
     },
     {
       title: 'Benutzerverwaltung',
       url: 'benutzerverwaltung',
-      icon: 'cog'
-    }
+      icon: 'cog',
+    },
   ];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
-    //public auth: AuthService
+    private statusBar: StatusBar //public auth: AuthService
   ) {
     this.initializeApp();
   }
@@ -73,10 +72,11 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    const path = window.location.pathname;
+    const path = window.location.pathname.split('/')[1];
     if (path !== undefined) {
-      // TODO
-      this.selectedIndex = this.appPages.findIndex(page => page.url.toLowerCase() === path.toLowerCase());
+      this.selectedIndex = this.appPages.findIndex(
+        (page) => page.url.toLowerCase() === path.toLowerCase()
+      );
     }
   }
 }
