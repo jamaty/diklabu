@@ -52,7 +52,7 @@ export const sendOnMessageCreate = functions
     const message = snapshot.data();
 
     const notification: admin.messaging.Notification = {
-      title: 'Sie haben eine neue Nachricht!',
+      title: 'Neue Nachricht!',
       body: message!.original,
     };
 
