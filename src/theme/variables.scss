@@ -1,30 +1,30 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
-/**
-Diklabu Farben
+.diklabu {
+  background: #191927; //background
 
-background: #191927;
-hellblau: #00eaf8;
-dunkelblau: #007aa5;
-hellgrün: #cef012;
-dunkelgrün: #7dd430;
-hellgelb: #fee530;
-dunkelgelb: #ffd40e;
-hellrot: #e8062c;
-dunkelrot: #7d0f76;
-hellorange: #fd5d02;
-dunklorange: #ea0c12;
-hellorange2: #fcc109;
-dunkelorange2: #f86d15;
-mitteblau: #00b8e7;
-mittegrün: #a8e220;
-mittegelb: #fdd81c;
-mittelila: #cb0d62;
-mitterot: #f23a09;
-mitteorange: #fa9a0e;
+  background: #00eaf8; //hellblau
+  background: #cef012; //hellgrün
+  background: #fee530; //hellgelb
+  background: #e8062c; //hellrot
+  background: #fd5d02; //hellorange
+  background: #fcc109; //hellorange2
 
-*/
+  background: #00b8e7; //mitteblau
+  background: #a8e220; //mittegrün
+  background: #fdd81c; //mittegelb
+  background: #cb0d62; //mittelila
+  background: #f23a09; //mitterot
+  background: #fa9a0e; //mitteorange
+
+  background: #007aa5; //dunkelblau
+  background: #7dd430; //dunkelgrün
+  background: #ffd40e; //dunkelgelb
+  background: #7d0f76; //dunkelrot
+  background: #ea0c12; //dunklorange
+  background: #f86d15; //dunkelorange2
+}
 
 /** Ionic CSS Variables **/
 :root {

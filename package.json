@@ -32,6 +32,7 @@
     "core-js": "^2.5.4",
     "firebase": "^7.14.3",
     "firebaseui": "^4.5.0",
+    "firebaseui-angular": "^4.1.0",
     "roboto-fontface": "^0.10.0",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",

@@ -1,15 +1,15 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
 import { AngularFireAuth } from "@angular/fire/auth";
-import { FirebaseUISignInFailure } from "firebaseui-angular";
 import { FirebaseUISignInSuccessWithAuthResult } from "firebaseui-angular";
+import { FirebaseUISignInFailure } from "firebaseui-angular";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.page.html",
-  styleUrls: ["./login.page.scss"],
+  selector: "app-login-2",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"],
 })
-export class LoginPage implements OnInit {
+export class LoginComponent implements OnInit {
   constructor(private afAuth: AngularFireAuth, private router: Router) {}
 
   ngOnInit(): void {

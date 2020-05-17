@@ -1,28 +1,55 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { RouteReuseStrategy } from "@angular/router";
+import { FormsModule } from "@angular/forms";
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { IonicModule, IonicRouteStrategy } from "@ionic/angular";
+import { SplashScreen } from "@ionic-native/splash-screen/ngx";
+import { StatusBar } from "@ionic-native/status-bar/ngx";
 
-import { firebaseConfig } from '../environments/environment';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireMessagingModule } from '@angular/fire/messaging';
-import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
-import {
-  AngularFireAnalyticsModule,
-  UserTrackingService,
-  ScreenTrackingService,
-} from '@angular/fire/analytics';
+import { firebaseConfig } from "../environments/environment";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { AngularFireMessagingModule } from "@angular/fire/messaging";
+import { AngularFireFunctionsModule, REGION } from "@angular/fire/functions";
+import { AngularFireAnalyticsModule } from "@angular/fire/analytics";
+import { UserTrackingService } from "@angular/fire/analytics";
+import { ScreenTrackingService } from "@angular/fire/analytics";
 
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from "./app.component";
+import { AppRoutingModule } from "./app-routing.module";
+
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { FirebaseUIModule, firebase, firebaseui } from "firebaseui-angular";
+import { LoginComponent } from "./components/login/login.component";
+
+export const firebaseUiAuthConfig: firebaseui.auth.Config = {
+  signInFlow: "redirect",
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    {
+      scopes: ["public_profile", "email", "user_likes", "user_friends"],
+      customParameters: {
+        auth_type: "reauthenticate",
+      },
+      provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+    },
+    firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+    firebase.auth.GithubAuthProvider.PROVIDER_ID,
+    {
+      requireDisplayName: false,
+      provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    },
+    firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+    firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID,
+  ],
+  tosUrl: "<your-tos-link>",
+  privacyPolicyUrl: "<your-privacyPolicyUrl-link>",
+  credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM,
+};
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoginComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -30,10 +57,12 @@ import { AppRoutingModule } from './app-routing.module';
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
     AngularFirestoreModule,
-    AngularFireMessagingModule,
-    AngularFireFunctionsModule,
     AngularFireAnalyticsModule,
+    AngularFireFunctionsModule,
+    AngularFireMessagingModule,
+    FirebaseUIModule.forRoot(firebaseUiAuthConfig),
   ],
   providers: [
     StatusBar,
@@ -41,7 +70,7 @@ import { AppRoutingModule } from './app-routing.module';
     UserTrackingService,
     ScreenTrackingService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: REGION, useValue: 'europe-west3' },
+    { provide: REGION, useValue: "europe-west3" },
   ],
   bootstrap: [AppComponent],
 })

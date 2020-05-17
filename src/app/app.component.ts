@@ -16,6 +16,11 @@ export class AppComponent implements OnInit {
   public selectedIndex = 0;
   public appPages = [
     {
+      title: "Login",
+      url: "login",
+      icon: "lock-closed",
+    },
+    {
       title: "Posteingang",
       url: "posteingang",
       icon: "mail",
@@ -81,4 +86,13 @@ export class AppComponent implements OnInit {
       );
     }
   }
+  /*
+  successCallback(data: FirebaseUISignInSuccessWithAuthResult) {
+    console.log("successCallback", data);
+    this.router.navigate(["page"]);
+  }
+
+  errorCallback(data: FirebaseUISignInFailure) {
+    console.warn("errorCallback", data);
+  }*/
 }
