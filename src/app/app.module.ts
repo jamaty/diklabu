@@ -8,6 +8,8 @@ import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 
 import { firebaseConfig } from "../environments/environment";
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireMessagingModule } from "@angular/fire/messaging";
 import { AngularFireFunctionsModule, REGION } from "@angular/fire/functions";
@@ -18,10 +20,7 @@ import { ScreenTrackingService } from "@angular/fire/analytics";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 
-import { AngularFireModule } from "@angular/fire";
-import { AngularFireAuthModule } from "@angular/fire/auth";
 import { FirebaseUIModule, firebase, firebaseui } from "firebaseui-angular";
-import { LoginComponent } from "./components/login/login.component";
 
 export const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: "redirect",
@@ -49,7 +48,7 @@ export const firebaseUiAuthConfig: firebaseui.auth.Config = {
 };
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
