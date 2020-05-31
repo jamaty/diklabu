@@ -20,6 +20,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
+              "src/manifest.webmanifest",
+              "src/firebase-messaging-sw.js",
               {
                 "glob": "**/*",
                 "input": "src/assets",
@@ -169,6 +171,10 @@
               "devServerTarget": "app:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }

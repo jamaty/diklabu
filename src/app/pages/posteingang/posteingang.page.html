@@ -1,0 +1,84 @@
+<app-header pageTitle="Posteingang"></app-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Topic based Push Notifications</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        First we have to get permission to send notifications. 😃
+      </p>
+      <p>
+        {{ ms.token }}
+      </p>
+      <ion-button
+        (click)="ms.getPermission()"
+        expand=""
+        fill="clear"
+        shape="round"
+      >
+        Grant permission 🚀
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Subscribe to a topic</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        Second, we subscribe the user to message notifications usung CFM.
+      </p>
+      <ion-button
+        (click)="ms.sub('messages')"
+        expand=""
+        fill="clear"
+        shape="round"
+      >
+        Subscribe to topic ✍️
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Broadcast a Notification</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        Then we create a new document in the messages collection, triggering the
+        notification to be broardcast to all subscribers of this topic.
+        notifications.
+      </p>
+      <ion-button
+        (click)="randomMessage()"
+        expand=""
+        fill="clear"
+        shape="round"
+      >
+        Trigger message ✉️
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Topic based Push Notifications</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        Lastly you can unsubscribe from this topic as well.
+      </p>
+      <ion-button
+        (click)="ms.unsub('messages')"
+        expand=""
+        fill="clear"
+        shape="round"
+      >
+        Unsubscribe from topic 🚫
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

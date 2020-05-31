@@ -4,13 +4,13 @@ import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "folder/Posteingang",
+    redirectTo: "posteingang",
     pathMatch: "full",
   },
   {
     path: "folder/:id",
     loadChildren: () =>
-      import("./folder/folder.module").then((m) => m.FolderPageModule),
+      import("./pages/folder/folder.module").then((m) => m.FolderPageModule),
   },
   {
     path: "anwesenheit",
@@ -20,11 +20,58 @@ const routes: Routes = [
       ),
   },
   {
-    path: "klassensteckbrief",
+    path: "klassen",
     loadChildren: () =>
       import("./pages/klassensteckbrief/klassensteckbrief.module").then(
         (m) => m.KlassensteckbriefPageModule
       ),
+  },
+  {
+    path: "benutzerverwaltung",
+    loadChildren: () =>
+      import("./pages/personen/personen.module").then(
+        (m) => m.PersonenPageModule
+      ),
+  },
+  {
+    path: "posteingang",
+    loadChildren: () =>
+      import("./pages/posteingang/posteingang.module").then(
+        (m) => m.PosteingangPageModule
+      ),
+  },
+  {
+    path: "kalender",
+    loadChildren: () =>
+      import("./pages/kalender/kalender.module").then(
+        (m) => m.KalenderPageModule
+      ),
+  },
+  {
+    path: "krankmeldung",
+    loadChildren: () =>
+      import("./pages/krankmeldung/krankmeldung.module").then(
+        (m) => m.KrankmeldungPageModule
+      ),
+  },
+  {
+    path: "schuelermonitor",
+    loadChildren: () =>
+      import("./pages/schuelermonitor/schuelermonitor.module").then(
+        (m) => m.SchuelermonitorPageModule
+      ),
+  },
+  {
+    path: "arbeitsgemeinschaften",
+    loadChildren: () =>
+      import("./pages/arbeitsgemeinschaften/arbeitsgemeinschaften.module").then(
+        (m) => m.ArbeitsgemeinschaftenPageModule
+      ),
+  },
+  {
+    path: "login",
+    loadChildren: () =>
+      import("./pages/login/login.module").then((m) => m.LoginPageModule),
   },
 ];
 
