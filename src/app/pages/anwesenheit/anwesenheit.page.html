@@ -1,45 +1,54 @@
 <app-header pageTitle="Anwesenheit"></app-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" id="myScroll">
   <ion-button (click)="toggleInfiniteScroll()">
     Toggle Infinite Scroll
   </ion-button>
 
   <ion-list>
     <div *ngFor="let a of anwesenheiten">
-      <ion-item-sliding>
-        <ion-item-options side="start">
-          <ion-item-option (click)="editAnwesenheit(a)" expandable>
+      <ion-item-sliding #slidingItem>
+        <ion-item-options
+          side="start"
+          (ionSwipe)="editAnwesenheit(slidingItem, a)"
+        >
+          <ion-item-option (click)="editAnwesenheit(slidingItem, a)" expandable>
             <ion-icon slot="icon-only" name="pencil"></ion-icon>
+            Ändern
           </ion-item-option>
         </ion-item-options>
 
         <ion-item button (click)="viewAnwesenheit(a)" detail>
           <ion-thumbnail slot="start">
-            <img src="../../../assets/img/elefant.png" />
+            <img src="{{a.klasseBild}}" />
           </ion-thumbnail>
           <ion-label>
-            <h3>
-              {{a.erfasstAm.toLocaleDateString("de-DE", options)}}
-            </h3>
-            <p>
-              Anwesend:
-              <ion-badge color="success">10</ion-badge>
-            </p>
-            <p>
-              Fehlend:
-              <ion-badge color="warning">3</ion-badge>
-            </p>
+            <ion-note slot="start">
+              {{a.erfasstAm.toLocaleDateString("de-DE", dateShort)}}
+            </ion-note>
+            <h2>
+              Klasse {{a.klasse}}
+            </h2>
           </ion-label>
+          <ion-badge slot="end" color="success" *ngIf="a.anwesend"
+            >{{a.anwesend}}</ion-badge
+          >
+          <ion-badge slot="end" color="warning" *ngIf="a.fehlend"
+            >{{a.fehlend}}</ion-badge
+          >
+          <ion-badge slot="end" color="danger" *ngIf="a.unentschuldigt"
+            >{{a.unentschuldigt}}</ion-badge
+          >
         </ion-item>
 
-        <ion-item-options side="end">
+        <ion-item-options side="end" (ionSwipe)="deleteAnwesenheit(a)">
           <ion-item-option
             color="danger"
             (click)="deleteAnwesenheit(a)"
             expandable
           >
             <ion-icon slot="icon-only" name="trash"></ion-icon>
+            Löschen
           </ion-item-option>
         </ion-item-options>
       </ion-item-sliding>

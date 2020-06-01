@@ -37,8 +37,8 @@ export class DatabaseService {
       })
     );
 
-    this.anwesenheitenCollection = this.fs.collection("Anwesenheiten", (ref) =>
-      ref.orderBy("erfasstAm", "asc").limit(8)
+    this.anwesenheitenCollection = this.fs.collection("anwesenheiten", (ref) =>
+      ref.orderBy("erfasstAm", "asc").limit(18)
     );
 
     this.anwesenheiten = this.anwesenheitenCollection.snapshotChanges().pipe(

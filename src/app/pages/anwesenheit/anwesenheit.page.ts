@@ -1,7 +1,13 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
+import {
+  IonInfiniteScroll,
+  AlertController,
+  IonItemSliding,
+  ModalController,
+} from "@ionic/angular";
 import { DatabaseService } from "src/app/services/database.service";
+import { ToastService } from "src/app/services/toast.service";
 import { Anwesenheit } from "src/app/models/anwesenheit";
-import { IonInfiniteScroll } from "@ionic/angular";
 
 @Component({
   selector: "app-anwesenheit",
@@ -15,13 +21,15 @@ export class AnwesenheitPage implements OnInit {
   editState: boolean = false;
   anwesenheitToEdit: Anwesenheit;
   anwesenheiten: Anwesenheit[];
-  anwesenheit: Anwesenheit = {
-    id: "",
-    erfasstAm: new Date(),
-    klasse: "",
+  anwesenheit: Anwesenheit;
+
+  dateShort = {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
   };
 
-  options = {
+  dateLong = {
     weekday: "long",
     year: "numeric",
     month: "long",
@@ -30,17 +38,36 @@ export class AnwesenheitPage implements OnInit {
     minute: "numeric",
   };
 
-  constructor(private db: DatabaseService) {}
+  constructor(
+    private db: DatabaseService,
+    private ts: ToastService,
+    private ac: AlertController,
+    public mc: ModalController
+  ) {}
 
   ngOnInit() {
     this.db.getAnwesenheiten().subscribe((anwesenheiten) => {
       this.anwesenheiten = anwesenheiten;
+      //this.anwesenheiten.sort(function (a, b) {
+      //  return b.erfasstAm < a.erfasstAm ? -1 : 1;
+      //});
     });
   }
 
-  editAnwesenheit(anwesenheit: Anwesenheit) {
+  async viewAnwesenheit(anwesenheit: Anwesenheit) {
+    this.ts.showToast(`Anwesenheitsliste mit ID ${anwesenheit.id} anzeigen`);
+    // const modal = await this.mc.create({
+    //   component: ModalPage,
+    //   cssClass: "my-custom-class",
+    // });
+    // return await modal.present();
+  }
+
+  editAnwesenheit(slidingItem: IonItemSliding, anwesenheit: Anwesenheit) {
     this.editState = true;
     this.anwesenheitToEdit = anwesenheit;
+    this.ts.showToast(`Anwesenheitsliste mit ID ${anwesenheit.id} ändern`);
+    slidingItem.close();
   }
 
   updateAnwesenheit(anwesenheit: Anwesenheit) {
@@ -48,9 +75,32 @@ export class AnwesenheitPage implements OnInit {
     this.clearState();
   }
 
-  deleteAnwesenheit(anwesenheit: Anwesenheit) {
-    this.clearState();
-    this.db.deleteAnwesenheit(anwesenheit);
+  async deleteAnwesenheit(anwesenheit: Anwesenheit) {
+    const alert = await this.ac.create({
+      header: "Löschen bestätigen",
+      message: `Sind Sie sicher, dass Sie die Anwesenheitsliste vom ${anwesenheit.erfasstAm.toLocaleString(
+        "de-DE",
+        this.dateShort
+      )} endgültig löschen wollen?`,
+      buttons: [
+        {
+          text: "Bestätigen",
+          handler: () => {
+            this.clearState();
+            this.db.deleteAnwesenheit(anwesenheit);
+            alert.dismiss();
+          },
+        },
+        {
+          text: "Abbrechen",
+          handler: () => {
+            alert.dismiss();
+          },
+        },
+      ],
+    });
+
+    await alert.present();
   }
 
   clearState() {
@@ -74,6 +124,4 @@ export class AnwesenheitPage implements OnInit {
   toggleInfiniteScroll() {
     this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
   }
-
-  viewAnwesenheit() {}
 }
