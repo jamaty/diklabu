@@ -1,6 +1,71 @@
 <app-header pageTitle="Anwesenheit"></app-header>
 
-<ion-content class="ion-padding">
-  <app-list-schueler></app-list-schueler>
-  <ion-button expand="full" color="primary">Schulbeginn</ion-button>
+<ion-content class="ion-padding" id="myScroll">
+  <ion-button (click)="toggleInfiniteScroll()">
+    Toggle Infinite Scroll
+  </ion-button>
+
+  <ion-list>
+    <div *ngFor="let a of anwesenheiten">
+      <ion-item-sliding #slidingItem>
+        <ion-item-options
+          side="start"
+          (ionSwipe)="editAnwesenheit(slidingItem, a)"
+        >
+          <ion-item-option (click)="editAnwesenheit(slidingItem, a)" expandable>
+            <ion-icon slot="icon-only" name="pencil"></ion-icon>
+            Ändern
+          </ion-item-option>
+        </ion-item-options>
+
+        <ion-item button (click)="viewAnwesenheit(a)" detail>
+          <ion-thumbnail slot="start">
+            <img src="{{a.klasseBild}}" />
+          </ion-thumbnail>
+          <ion-label>
+            <ion-note slot="start">
+              {{a.erfasstAm.toLocaleDateString("de-DE", dateShort)}}
+            </ion-note>
+            <h2>
+              Klasse {{a.klasse}}
+            </h2>
+          </ion-label>
+          <ion-badge slot="end" color="success" *ngIf="a.anwesend"
+            >{{a.anwesend}}</ion-badge
+          >
+          <ion-badge slot="end" color="warning" *ngIf="a.fehlend"
+            >{{a.fehlend}}</ion-badge
+          >
+          <ion-badge slot="end" color="danger" *ngIf="a.unentschuldigt"
+            >{{a.unentschuldigt}}</ion-badge
+          >
+        </ion-item>
+
+        <ion-item-options side="end" (ionSwipe)="deleteAnwesenheit(a)">
+          <ion-item-option
+            color="danger"
+            (click)="deleteAnwesenheit(a)"
+            expandable
+          >
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+            Löschen
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </div>
+  </ion-list>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="crescent"
+      loadingText="Lade weitere Daten..."
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

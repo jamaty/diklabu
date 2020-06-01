@@ -27,8 +27,6 @@ export class DatabaseService {
       ref.orderBy("vorname", "asc")
     );
 
-    this.msgCollection = this.fs.collection("messages");
-
     this.personen = this.personenCollection.snapshotChanges().pipe(
       map((changes) => {
         return changes.map((a) => {
@@ -38,6 +36,23 @@ export class DatabaseService {
         });
       })
     );
+
+    this.anwesenheitenCollection = this.fs.collection("anwesenheiten", (ref) =>
+      ref.orderBy("erfasstAm", "asc").limit(18)
+    );
+
+    this.anwesenheiten = this.anwesenheitenCollection.snapshotChanges().pipe(
+      map((changes) => {
+        return changes.map((a) => {
+          const data = a.payload.doc.data() as Anwesenheit;
+          data.id = a.payload.doc.id;
+          data.erfasstAm = new Date(data.erfasstAm);
+          return data;
+        });
+      })
+    );
+
+    this.msgCollection = this.fs.collection("messages");
   }
 
   getPersonen() {
@@ -56,6 +71,24 @@ export class DatabaseService {
   deletePerson(person: Person) {
     this.personDoc = this.fs.doc("Personen/" + person.id);
     this.personDoc.delete();
+  }
+
+  getAnwesenheiten() {
+    return this.anwesenheiten;
+  }
+
+  addAnwesenheit(anwesenheit: Anwesenheit) {
+    this.anwesenheitenCollection.add(anwesenheit);
+  }
+
+  updateAnwesenheit(anwesenheit: Anwesenheit) {
+    this.anwesenheitDoc = this.fs.doc("Anwesenheiten/" + anwesenheit.id);
+    this.anwesenheitDoc.update(anwesenheit);
+  }
+
+  deleteAnwesenheit(anwesenheit: Anwesenheit) {
+    this.anwesenheitDoc = this.fs.doc("Anwesenheiten/" + anwesenheit.id);
+    this.anwesenheitDoc.delete();
   }
 
   addMessage(msg: Message) {
