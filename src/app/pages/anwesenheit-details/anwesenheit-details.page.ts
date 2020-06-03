@@ -5,6 +5,7 @@ import { ToastService } from "src/app/services/toast.service";
 import { Anwesenheit } from "src/app/models/anwesenheit";
 import { Person } from "src/app/models/person";
 
+
 @Component({
   selector: "app-anwesenheit-details",
   templateUrl: "./anwesenheit-details.page.html",
@@ -16,13 +17,18 @@ export class AnwesenheitDetailsPage implements OnInit {
   anwesenheitFehlend: Anwesenheit[];
   personenDetails: Person[];
   anwesenheit: Anwesenheit;
+  anwesenheitID;
+  
   constructor(
     private db: DatabaseService,
     private ts: ToastService,
-    public mc: ModalController
+    public mc: ModalController,
+    
+    
   ) {}
 
   ngOnInit() {
+   console.log(this.anwesenheitID)
     this.db.getAnwesenheitFehlend().subscribe((anwesenheitFehlend) => {
       this.anwesenheitFehlend = anwesenheitFehlend;
       console.log(this.anwesenheitFehlend);
