@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PersonService } from '../../services/person.service';
+import { DatabaseService } from '../../services/database.service';
 import { Person } from '../../models/person';
 
 @Component({
@@ -18,7 +18,7 @@ export class ListSchuelerComponent implements OnInit {
     image: ''
   }
 
-  constructor(private personService : PersonService) { }
+  constructor(private personService : DatabaseService) { }
 
   ngOnInit() {
     this.personService.getPersonen().subscribe(personen => {
