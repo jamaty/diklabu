@@ -38,8 +38,14 @@ export class DatabaseService {
     );
 
     this.anwesenheitenCollection = this.fs.collection("anwesenheiten", (ref) =>
-      ref.orderBy("erfasstAm", "asc").limit(18)
+      ref.orderBy("erfasstAm", "desc")
     );
+
+    // next
+    // const lastAnwesenheit = this.anwesenheiten[1];
+    // this.anwesenheitenCollection = this.fs.collection("anwesenheiten", (ref) =>
+    //   ref.orderBy("erfasstAm", "desc").limit(10).startAfter(lastAnwesenheit)
+    // );
 
     this.anwesenheiten = this.anwesenheitenCollection.snapshotChanges().pipe(
       map((changes) => {
@@ -77,17 +83,21 @@ export class DatabaseService {
     return this.anwesenheiten;
   }
 
+  fetchMoreAnwesenheiten() {
+    this.anwesenheiten;
+  }
+
   addAnwesenheit(anwesenheit: Anwesenheit) {
     this.anwesenheitenCollection.add(anwesenheit);
   }
 
   updateAnwesenheit(anwesenheit: Anwesenheit) {
-    this.anwesenheitDoc = this.fs.doc("Anwesenheiten/" + anwesenheit.id);
+    this.anwesenheitDoc = this.fs.doc("anwesenheiten/" + anwesenheit.id);
     this.anwesenheitDoc.update(anwesenheit);
   }
 
   deleteAnwesenheit(anwesenheit: Anwesenheit) {
-    this.anwesenheitDoc = this.fs.doc("Anwesenheiten/" + anwesenheit.id);
+    this.anwesenheitDoc = this.fs.doc("anwesenheiten/" + anwesenheit.id);
     this.anwesenheitDoc.delete();
   }
 

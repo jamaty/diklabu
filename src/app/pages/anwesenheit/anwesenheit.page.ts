@@ -19,6 +19,9 @@ export class AnwesenheitPage implements OnInit {
   infiniteScroll: IonInfiniteScroll;
 
   editState: boolean = false;
+  filterMode: boolean = false;
+  searchMode: boolean = false;
+
   anwesenheitToEdit: Anwesenheit;
   anwesenheiten: Anwesenheit[];
   anwesenheit: Anwesenheit;
@@ -109,6 +112,9 @@ export class AnwesenheitPage implements OnInit {
   }
 
   loadData(event) {
+    // TODO
+    this.db.fetchMoreAnwesenheiten();
+
     setTimeout(() => {
       console.log("Done");
       event.target.complete();
@@ -123,5 +129,12 @@ export class AnwesenheitPage implements OnInit {
 
   toggleInfiniteScroll() {
     this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
+  }
+
+  doRefresh(event) {
+    // TODO
+    setTimeout(() => {
+      event.target.complete();
+    }, 2000);
   }
 }
