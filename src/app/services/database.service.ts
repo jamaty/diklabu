@@ -38,7 +38,7 @@ export class DatabaseService {
     );
 
     this.anwesenheitenCollection = this.fs.collection("anwesenheiten", (ref) =>
-      ref.orderBy("erfasstAm", "desc").limit(10)
+      ref.orderBy("erfasstAm", "desc")
     );
 
     // next
@@ -92,12 +92,12 @@ export class DatabaseService {
   }
 
   updateAnwesenheit(anwesenheit: Anwesenheit) {
-    this.anwesenheitDoc = this.fs.doc("Anwesenheiten/" + anwesenheit.id);
+    this.anwesenheitDoc = this.fs.doc("anwesenheiten/" + anwesenheit.id);
     this.anwesenheitDoc.update(anwesenheit);
   }
 
   deleteAnwesenheit(anwesenheit: Anwesenheit) {
-    this.anwesenheitDoc = this.fs.doc("Anwesenheiten/" + anwesenheit.id);
+    this.anwesenheitDoc = this.fs.doc("anwesenheiten/" + anwesenheit.id);
     this.anwesenheitDoc.delete();
   }
 
