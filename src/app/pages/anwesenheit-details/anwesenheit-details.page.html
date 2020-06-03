@@ -1,0 +1,34 @@
+<ion-content>
+  <ion-item>
+    <ion-label>Anwesenheit Details</ion-label>
+    <ion-button (click)="CloseModal()" size="small" slot="end"
+      >close</ion-button
+    >
+  </ion-item>
+
+  
+  <h3 style="margin-left:10px;">Anwesend</h3>
+    <div *ngFor="let a of anwesenheitFehlend">
+    <ion-item>
+    <ion-avatar>
+    <img src="../../../assets/img/schueler.jpg">
+
+    </ion-avatar> 
+    <ion-label>{{a.person}}</ion-label>
+    <ion-toggle checked role="checkbox"></ion-toggle>
+  </ion-item>
+  </div>
+
+
+  <h3 style="margin-left:10px;">Fehlend</h3>
+    <div *ngFor="let a of anwesenheitFehlend">
+    <ion-item>
+    <ion-avatar>
+    <img src="../../../assets/img/schueler.jpg">
+
+    </ion-avatar> 
+    <ion-label>{{a.person}}</ion-label>
+    <ion-toggle checked role="checkbox"></ion-toggle>
+  </ion-item>
+  </div>
+</ion-content>

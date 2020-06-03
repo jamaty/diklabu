@@ -1,0 +1,7 @@
+<h1>FirebaseUI-Angular Sample</h1>
+<firebase-ui
+  (signInSuccessWithAuthResult)="successCallback($event)"
+  (signInFailure)="errorCallback($event)"
+></firebase-ui>
+<button (click)="logout()">Logout</button>
+<button [routerLink]="['/posteingang']">To second page</button>

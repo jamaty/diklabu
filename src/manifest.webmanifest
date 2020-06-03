@@ -1,0 +1,25 @@
+{
+  "name": "Diklabu",
+  "short_name": "Diklabu",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#191927",
+  "icons": [
+    {
+      "src": "/assets/diklabu_logo_128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "/assets/diklabu_logo_192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/assets/diklabu_logo_512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "background_color": "#191927"
+}

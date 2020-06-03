@@ -1,8 +1,9 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "diklabu",
+  "appId": "com.diklabu.app",
+  "appName": "Diklabu",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
-  "cordova": {}
+  "cordova": {},
+  "windowsAndroidStudioPath": "C:\\Users\\andre\\AppData\\Local\\JetBrains\\Toolbox\\apps\\AndroidStudio\\ch-0\\192.6392135\\bin\\studio64.exe"
 }
