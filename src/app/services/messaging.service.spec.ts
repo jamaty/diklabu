@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PersonService } from './person.service';
+import { MessagingService } from './messaging.service';
 
-describe('PersonService', () => {
+describe('MessagingService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: PersonService = TestBed.get(PersonService);
+    const service: MessagingService = TestBed.get(MessagingService);
     expect(service).toBeTruthy();
   });
 });

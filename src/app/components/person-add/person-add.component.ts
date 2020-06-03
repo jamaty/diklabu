@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PersonService } from '../../services/person.service'
-import { Person } from '../../models/person'
+import { DatabaseService } from '../../services/database.service';
+import { Person } from '../../models/person';
 
 @Component({
   selector: 'app-person-add',
@@ -16,13 +16,17 @@ export class PersonAddComponent implements OnInit {
     image: ''
   }
 
-  constructor(private personService: PersonService) { }
+  constructor(private personService: DatabaseService) {}
 
   ngOnInit() {}
 
-  onSubmit(){
-    console.log(this.person)
-    if(this.person.vorname != '' && this.person.nachname != '' && this.person.rolle != ''){
+  onSubmit() {
+    console.log(this.person);
+    if (
+      this.person.vorname != '' &&
+      this.person.nachname != '' &&
+      this.person.rolle != ''
+    ) {
       this.personService.addPerson(this.person);
       this.person.vorname = '';
       this.person.nachname = '';

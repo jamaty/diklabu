@@ -1,66 +1,67 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
-import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Platform } from "@ionic/angular";
+import { SplashScreen } from "@ionic-native/splash-screen/ngx";
+import { StatusBar } from "@ionic-native/status-bar/ngx";
+import { Router } from "@angular/router";
 
 //import { AuthService } from "./services/auth.service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+  selector: "app-root",
+  templateUrl: "app.component.html",
+  styleUrls: ["app.component.scss"],
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
   public appPages = [
     {
-      title: 'Posteingang',
-      url: 'folder/Posteingang',
-      icon: 'mail'
+      title: "Posteingang",
+      url: "posteingang",
+      icon: "mail",
     },
     {
-      title: 'Kalender',
-      url: 'kalender',
-      icon: 'calendar'
+      title: "Kalender",
+      url: "kalender",
+      icon: "calendar",
     },
     {
-      title: 'Anwesenheit',
-      url: 'anwesenheit',
-      icon: 'book'
+      title: "Anwesenheit",
+      url: "anwesenheit",
+      icon: "book",
     },
     {
-      title: 'Krankmeldung',
-      url: 'krankmeldung',
-      icon: 'bandage'
+      title: "Krankmeldung",
+      url: "krankmeldung",
+      icon: "bandage",
     },
     {
-      title: 'Schülermonitor',
-      url: 'folder/Schülermonitor',
-      icon: 'man'
+      title: "Schülermonitor",
+      url: "schuelermonitor",
+      icon: "man",
     },
     {
-      title: 'Arbeitsgemeinschaften',
-      url: 'folder/Arbeitsgemeinschaften',
-      icon: 'people'
+      title: "Arbeitsgemeinschaften",
+      url: "arbeitsgemeinschaften",
+      icon: "people",
     },
     {
-      title: 'Klassensteckbriefe',
-      url: 'klassensteckbrief',
-      icon: 'albums'
+      title: "Klassenübersicht",
+      url: "klassen",
+      icon: "albums",
     },
     {
-      title: 'Personen',
-      url: 'personen',
-      icon: 'people'
-    }
+      title: "Benutzerverwaltung",
+      url: "benutzerverwaltung",
+      icon: "cog",
+    },
   ];
 
   constructor(
+    private router: Router,
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
-    //public auth: AuthService
+    private statusBar: StatusBar //public auth: AuthService
   ) {
     this.initializeApp();
   }
@@ -73,9 +74,11 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    const path = window.location.pathname.split('folder/')[1];
-    if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
+    let path = window.location.pathname.split("/")[1];
+    if (path !== "") {
+      this.selectedIndex = this.appPages.findIndex(
+        (page) => page.url === path.toLowerCase()
+      );
     }
   }
 }

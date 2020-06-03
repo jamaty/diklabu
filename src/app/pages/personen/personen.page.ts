@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
-import { PersonService } from '../../services/person.service';
+import { DatabaseService } from '../../services/database.service';
 import { Person } from '../../models/person';
 
 @Component({
@@ -22,17 +22,17 @@ export class PersonenPage implements OnInit {
     image: ''
   }
 
-  constructor( private personService : PersonService) { }
+  constructor( private db : DatabaseService) { }
 
   ngOnInit() {
-    this.personService.getPersonen().subscribe(personen => {
+    this.db.getPersonen().subscribe(personen => {
       this.personen = personen;
     });
   }
 
   onSubmit(){
     if(this.person.vorname != '' && this.person.nachname != '' && this.person.rolle != ''){
-      this.personService.addPerson(this.person);
+      this.db.addPerson(this.person);
       this.person.vorname = '';
       this.person.nachname = '';
       this.person.rolle = 'Eltern';
@@ -46,13 +46,13 @@ export class PersonenPage implements OnInit {
   }
 
   updatePerson(person: Person){
-    this.personService.updatePerson(person);
+    this.db.updatePerson(person);
     this.clearState();
   }
 
   deletePerson(event, person: Person){
     this.clearState();
-    this.personService.deletePerson(person);
+    this.db.deletePerson(person);
   }
 
   clearState(){
