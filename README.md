@@ -34,5 +34,7 @@ https://www.youtube.com/watch?v=JTE2Fn_sCZs
 
 ## Version History
 
+- 0.1.2
+  - First draft of Anwesenheitsverwaltung
 - 0.1
   - Rough framework
