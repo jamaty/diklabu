@@ -28,10 +28,11 @@ export class AnwesenheitDetailsPage implements OnInit {
   ) {}
 
   ngOnInit() {
-   console.log(this.anwesenheitID)
-    this.db.getAnwesenheitFehlend().subscribe((anwesenheitFehlend) => {
+   
+    
+    this.db.getAnwesenheitFehlend(this.anwesenheitID).subscribe((anwesenheitFehlend) => {
       this.anwesenheitFehlend = anwesenheitFehlend;
-      console.log(this.anwesenheitFehlend);
+      
       //this.anwesenheiten.sort(function (a, b) {
       //  return b.erfasstAm < a.erfasstAm ? -1 : 1;
       //});
@@ -44,7 +45,7 @@ export class AnwesenheitDetailsPage implements OnInit {
 
     this.db.getAnwesenheiten().subscribe((anwesenheiten) => {
       this.anwesenheiten = anwesenheiten;
-      console.log(this.anwesenheiten);
+     
       //this.anwesenheiten.sort(function (a, b) {
       //  return b.erfasstAm < a.erfasstAm ? -1 : 1;
       //});
