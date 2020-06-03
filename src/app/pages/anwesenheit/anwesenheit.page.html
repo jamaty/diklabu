@@ -1,9 +1,60 @@
-<app-header pageTitle="Anwesenheit"></app-header>
+<ion-toolbar>
+  <ion-buttons slot="primary">
+    <ion-button (click)="toggleInfiniteScroll()">
+      <ion-icon
+        slot="icon-only"
+        name="infinite"
+        color="danger"
+        *ngIf="infiniteScroll.disabled"
+      ></ion-icon>
+      <ion-icon
+        slot="icon-only"
+        name="infinite"
+        *ngIf="!infiniteScroll.disabled"
+      ></ion-icon>
+    </ion-button>
+    <ion-button (click)="searchMode=!searchMode">
+      <ion-icon slot="icon-only" name="search" *ngIf="!searchMode"></ion-icon>
+      <ion-icon slot="icon-only" name="close" *ngIf="searchMode"></ion-icon>
+    </ion-button>
+    <ion-button (click)="filterMode=!filterMode">
+      <ion-icon slot="icon-only" name="filter"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-title *ngIf="!searchMode">Anwesenheit</ion-title>
+  <ion-searchbar placeholder="Suche" *ngIf="searchMode"></ion-searchbar>
+</ion-toolbar>
 
-<ion-content class="ion-padding" id="myScroll">
-  <ion-button (click)="toggleInfiniteScroll()">
-    Toggle Infinite Scroll
-  </ion-button>
+<ion-item *ngIf="filterMode">
+  <ion-label>Klasse</ion-label>
+  <ion-select name="Klasse">
+    <ion-select-option value="1A">1A</ion-select-option>
+    <ion-select-option value="1B">1B</ion-select-option>
+    <ion-select-option value="1C">1C</ion-select-option>
+    <ion-select-option value="1D">1D</ion-select-option>
+  </ion-select>
+
+  <ion-label>Von </ion-label>
+  <ion-datetime
+    displayFormat="DD.MM.YYYY"
+    min="2019-01-01"
+    max="2019-02-28"
+    value="2019-01-01"
+  ></ion-datetime>
+
+  <ion-label>Bis </ion-label>
+  <ion-datetime
+    displayFormat="DD.MM.YYYY"
+    min="2019-01-01"
+    max="2019-02-28"
+    value="2019-02-28"
+  ></ion-datetime>
+</ion-item>
+
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
   <ion-list>
     <div *ngFor="let a of anwesenheiten">

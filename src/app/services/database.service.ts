@@ -38,8 +38,14 @@ export class DatabaseService {
     );
 
     this.anwesenheitenCollection = this.fs.collection("anwesenheiten", (ref) =>
-      ref.orderBy("erfasstAm", "asc").limit(18)
+      ref.orderBy("erfasstAm", "desc").limit(10)
     );
+
+    // next
+    // const lastAnwesenheit = this.anwesenheiten[1];
+    // this.anwesenheitenCollection = this.fs.collection("anwesenheiten", (ref) =>
+    //   ref.orderBy("erfasstAm", "desc").limit(10).startAfter(lastAnwesenheit)
+    // );
 
     this.anwesenheiten = this.anwesenheitenCollection.snapshotChanges().pipe(
       map((changes) => {
@@ -75,6 +81,10 @@ export class DatabaseService {
 
   getAnwesenheiten() {
     return this.anwesenheiten;
+  }
+
+  fetchMoreAnwesenheiten() {
+    this.anwesenheiten;
   }
 
   addAnwesenheit(anwesenheit: Anwesenheit) {
