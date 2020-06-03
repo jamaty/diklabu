@@ -8,6 +8,7 @@ import {
 import { DatabaseService } from "src/app/services/database.service";
 import { ToastService } from "src/app/services/toast.service";
 import { Anwesenheit } from "src/app/models/anwesenheit";
+import { AnwesenheitDetailsPage } from "../anwesenheit-details/anwesenheit-details.page";
 
 @Component({
   selector: "app-anwesenheit",
@@ -44,6 +45,14 @@ export class AnwesenheitPage implements OnInit {
     private ac: AlertController,
     public mc: ModalController
   ) {}
+
+  OpenModal() {
+    this.mc
+      .create({ component: AnwesenheitDetailsPage })
+      .then((HTMLIonModalElement) => {
+        HTMLIonModalElement.present();
+      });
+  }
 
   ngOnInit() {
     this.db.getAnwesenheiten().subscribe((anwesenheiten) => {

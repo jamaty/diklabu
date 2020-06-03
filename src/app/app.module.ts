@@ -21,7 +21,7 @@ import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 
 import { FirebaseUIModule, firebase, firebaseui } from "firebaseui-angular";
-
+import { AnwesenheitDetailsPageModule } from "./pages/anwesenheit-details/anwesenheit-details.module";
 export const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: "redirect",
   signInOptions: [
@@ -62,6 +62,7 @@ export const firebaseUiAuthConfig: firebaseui.auth.Config = {
     AngularFireFunctionsModule,
     AngularFireMessagingModule,
     FirebaseUIModule.forRoot(firebaseUiAuthConfig),
+    AnwesenheitDetailsPageModule,
   ],
   providers: [
     StatusBar,
