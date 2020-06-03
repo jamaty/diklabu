@@ -8,4 +8,7 @@ export interface Anwesenheit {
   anwesend: number;
   fehlend: number;
   unentschuldigt: number;
+  person: number;
+  
 }
+

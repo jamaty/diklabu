@@ -19,6 +19,10 @@ export class DatabaseService {
   anwesenheitenCollection: AngularFirestoreCollection<Anwesenheit>;
   anwesenheitDoc: AngularFirestoreDocument<Anwesenheit>;
   anwesenheiten: Observable<Anwesenheit[]>;
+  anwesenheitFehlendCollection: AngularFirestoreCollection<Anwesenheit>;
+  anwesenheitFehlend: Observable<Anwesenheit[]>;
+ 
+  
 
   msgCollection: AngularFirestoreCollection<Message>;
 
@@ -40,6 +44,9 @@ export class DatabaseService {
     this.anwesenheitenCollection = this.fs.collection("anwesenheiten", (ref) =>
       ref.orderBy("erfasstAm", "desc")
     );
+   
+
+
 
     // next
     // const lastAnwesenheit = this.anwesenheiten[1];
@@ -85,6 +92,24 @@ export class DatabaseService {
 
   fetchMoreAnwesenheiten() {
     this.anwesenheiten;
+  }
+  getAnwesenheitFehlend(anwesenheitID: Anwesenheit)
+  {
+    
+
+    this.anwesenheitFehlendCollection = this.fs.collection("anwesenheiten/"+anwesenheitID+"/fehlend", (ref) => ref
+    );
+    this.anwesenheitFehlend = this.anwesenheitFehlendCollection.snapshotChanges().pipe(
+      map((changes) => {
+        return changes.map((a) => {
+          const data = a.payload.doc.data() as Anwesenheit;
+          data.id = a.payload.doc.id;
+          return data;
+        });
+      })
+    );
+
+    return this.anwesenheitFehlend;
   }
 
   addAnwesenheit(anwesenheit: Anwesenheit) {
