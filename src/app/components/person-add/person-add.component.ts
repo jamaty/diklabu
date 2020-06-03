@@ -12,7 +12,8 @@ export class PersonAddComponent implements OnInit {
     id: '',
     vorname: '',
     nachname: '',
-    rolle: ''
+    rolle: '',
+    image: ''
   }
 
   constructor(private personService: PersonService) { }
@@ -26,6 +27,12 @@ export class PersonAddComponent implements OnInit {
       this.person.vorname = '';
       this.person.nachname = '';
       this.person.rolle = '';
+      this.person.image = '';
+    }
+    console.log("person.id: " + this.person.id);
+    if(this.person.id == ""){
+      console.log("Update nach dem Add");
+      this.personService.updatePerson(this.person);
     }
   }
 }

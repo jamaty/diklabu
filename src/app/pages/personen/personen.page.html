@@ -23,6 +23,9 @@
           <ion-select-option value="Eltern">Eltern</ion-select-option>
           <ion-select-option value="Schüler">Schüler</ion-select-option>
         </ion-select>
+        
+        <ion-label>Image</ion-label>
+        <ion-input type="text" [(ngModel)]="person.image" name="image"></ion-input>
       </ion-item>
     </ion-list>
   
@@ -36,7 +39,7 @@
   <ion-list>
     <ion-item *ngFor="let person of personen">
       <ion-avatar slot="start">
-        <img src="../../../assets/img/schueler.jpg">
+        <img src="{{ person.image }}">
       </ion-avatar>
       <ion-label *ngIf="person != personToEdit">
         <h2>{{person.vorname + ' ' + person.nachname}}</h2>
@@ -56,6 +59,9 @@
           <ion-select-option value="Eltern">Eltern</ion-select-option>
           <ion-select-option value="Schüler">Schüler</ion-select-option>
         </ion-select>
+        
+        <ion-label>Image</ion-label>
+        <ion-input type="text" [(ngModel)]="person.image" name="image"></ion-input>
       </ion-item>
 
       <ion-icon (click)="updatePerson(person)" name="save" slot="end" *ngIf="person == personToEdit"></ion-icon>

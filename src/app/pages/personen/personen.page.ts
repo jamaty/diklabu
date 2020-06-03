@@ -18,7 +18,8 @@ export class PersonenPage implements OnInit {
     id: '',
     vorname: '',
     nachname: '',
-    rolle: 'Eltern'
+    rolle: 'Eltern',
+    image: ''
   }
 
   constructor( private personService : PersonService) { }
@@ -35,6 +36,7 @@ export class PersonenPage implements OnInit {
       this.person.vorname = '';
       this.person.nachname = '';
       this.person.rolle = 'Eltern';
+      this.person.image = '';
     }
   }
 
