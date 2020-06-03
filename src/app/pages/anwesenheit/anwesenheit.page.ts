@@ -49,15 +49,14 @@ export class AnwesenheitPage implements OnInit {
     public mc: ModalController
   ) {}
 
-  async OpenModal(anwesenheit:Anwesenheit)
-   {
-    const modal=await this.mc.create({
-      component:AnwesenheitDetailsPage,
-      componentProps:{
-        anwesenheitID:anwesenheit.id
-      }
-    }) ;
-    return await modal.present(); 
+  async OpenModal(anwesenheit?: Anwesenheit) {
+    const modal = await this.mc.create({
+      component: AnwesenheitDetailsPage,
+      componentProps: {
+        anwesenheitID: anwesenheit.id,
+      },
+    });
+    return await modal.present();
   }
 
   ngOnInit() {
