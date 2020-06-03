@@ -3,63 +3,16 @@
 <!-- List of Text Items -->
 <h4>Anwesend</h4>
 <ion-list>
-  <ion-item>
-    <ion-avatar slot="start">
-      <img src="../../../assets/img/schueler.jpg">
-    </ion-avatar>
-    <ion-label>Max Mustermann</ion-label>
-    <ion-toggle checked></ion-toggle>
-  </ion-item>
-  <ion-item>
-    <ion-avatar slot="start">
-      <img src="../../../assets/img/schueler.jpg">
-    </ion-avatar>
-    <ion-label>Max Mustermann</ion-label>
-    <ion-toggle checked></ion-toggle>
-  </ion-item>
-  <ion-item>
-    <ion-avatar slot="start">
-      <img src="../../../assets/img/schueler.jpg">
-    </ion-avatar>
-    <ion-label>Max Mustermann</ion-label>
-    <ion-toggle checked></ion-toggle>
-  </ion-item>
-  <ion-item>
-    <ion-avatar slot="start">
-      <img src="../../../assets/img/schueler.jpg">
-    </ion-avatar>
-    <ion-label>Max Mustermann</ion-label>
-    <ion-toggle checked></ion-toggle>
-  </ion-item>
-  <ion-item>
-    <ion-avatar slot="start">
-      <img src="../../../assets/img/schueler.jpg">
-    </ion-avatar>
-    <ion-label>Max Mustermann</ion-label>
-    <ion-toggle checked></ion-toggle>
-  </ion-item>
-  
-  <h4>Krankgemeldet</h4>  
-  <ion-item>
-    <ion-avatar slot="start">
-      <img src="../../../assets/img/schueler.jpg">
-    </ion-avatar>
-    <ion-label>Max Mustermann</ion-label>
-    <ion-toggle></ion-toggle>
-  </ion-item>
-  <ion-item>
-    <ion-avatar slot="start">
-      <img src="../../../assets/img/schueler.jpg">
-    </ion-avatar>
-    <ion-label>Max Mustermann</ion-label>
-    <ion-toggle></ion-toggle>
-  </ion-item>
-  <h4>Unentschuldigt</h4>  
-  <ion-item>
-    <ion-avatar slot="start">
-      <img src="../../../assets/img/schueler.jpg">
-    </ion-avatar>
-    <ion-label>Max Mustermann</ion-label>
-    <ion-toggle></ion-toggle>
-  </ion-item>
+  <ng-container *ngFor="let schueler of schueler_all">
+    <ion-item *ngIf="schueler.rolle==='Schüler'">
+      <ion-avatar slot="start">
+        <img src="{{ schueler.image }}">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{schueler.vorname + ' ' + schueler.nachname}}</h2>
+        <h3>{{schueler.rolle}}</h3>
+      </ion-label> 
+      <ion-toggle checked></ion-toggle>   
+    </ion-item>
+  </ng-container>
 </ion-list>
