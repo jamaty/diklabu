@@ -1,7 +1,10 @@
 import { Injectable } from "@angular/core";
+import { AngularFirestore } from "@angular/fire/firestore";
+import { AngularFirestoreCollection } from "@angular/fire/firestore";
 import { AngularFireMessaging } from "@angular/fire/messaging";
 import { AngularFireFunctions } from "@angular/fire/functions";
 import { ToastService } from "src/app/services/toast.service";
+import { Message } from "../models/message";
 import { tap } from "rxjs/operators";
 
 // Fixing temp bug
@@ -14,14 +17,21 @@ _messaging.onMessage = _messaging.onMessage.bind(_messaging);
   providedIn: "root",
 })
 export class MessagingService {
+  msgCollection: AngularFirestoreCollection<Message>;
   token;
 
   constructor(
+    private fs: AngularFirestore,
     private afm: AngularFireMessaging,
     private aff: AngularFireFunctions,
     private ts: ToastService
   ) {
+    this.msgCollection = this.fs.collection("messages");
     this.listen();
+  }
+
+  addMessage(msg: Message) {
+    this.msgCollection.add(msg);
   }
 
   getPermission() {
