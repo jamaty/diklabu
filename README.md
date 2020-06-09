@@ -1,9 +1,7 @@
-# Diklabu
+# Diklabu 📖
 
-![Build and Deploy Testing](https://github.com/jamaty/diklabu/workflows/Build%20and%20Deploy%20Testing/badge.svg)
-![Build and Deploy Master](https://github.com/jamaty/diklabu/workflows/Build%20and%20Deploy%20Master/badge.svg)
-
-> Hybrid app making teachers happy
+![Testing](https://github.com/jamaty/diklabu/workflows/Build%20and%20Deploy%20Testing/badge.svg)
+![Master](https://github.com/jamaty/diklabu/workflows/Build%20and%20Deploy%20Master/badge.svg)
 
 ## Vision
 
@@ -11,28 +9,45 @@ For parents, schoolchildren, their teaching and educational staff as well as for
 
 ![Splash Image](resources/teaser.png)
 
-## Important Commands
+## Install
+
+You need to have NodeJS installed for this to work.
+Find and download your version [here](https://nodejs.org/en/download/).
 
 ```sh
-// Install Dependencies
+// Install dependencies
 npm install
 
 // Install Ionic CLI
-npm install -g @ionic/cli
+npm install @ionic/cli
 
-// Build Ionic production release
-ionic build --prod --release
-
-// Deploy to Firebase
-firebase deploy
+// Run on localhost
+ionic serve
 ```
 
-## Developer Guidelines
+## Planned Versions
 
-Please watch this and act accordingly<br>
-https://www.youtube.com/watch?v=JTE2Fn_sCZs
+- 0.2 **Target version for final prototype**
+
+  - _Working login page with Google and Email Auth_
+  - _Connections between different person roles_
+  - _CRUD operations on attendance lists from a teachers perspective_
+  - _CRUD operations on sick notes from a parents perspective_
+  - _Send push messages to corresponding parents of their chilren were reported missing by teacher_
+  - _Upload sick note to report student sick by their parent_
+
+- 0.1.3
+  - _Currently in development_
 
 ## Version History
 
+- 0.1.2
+  - Merged all feature branches
+  - New mockup data for people and attendances
+  - Presented on 06.06.2020 as current prototype version
+- 0.1.1
+  - First draft of authorization service
+  - First draft of messaging service
+  - First darf of cloud functions
 - 0.1
-  - Rough framework
+  - Initial commit, rough framework
