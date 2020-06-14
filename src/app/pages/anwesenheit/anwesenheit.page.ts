@@ -53,7 +53,7 @@ export class AnwesenheitPage implements OnInit {
     const modal = await this.mc.create({
       component: AnwesenheitDetailsPage,
       componentProps: {
-        anwesenheit: anwesenheit,
+        anwesenheitID: anwesenheit.id,
       },
     });
     return await modal.present();

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ModalController } from "@ionic/angular";
-import { AnwesenheitenService } from "src/app/services/anwesenheiten.service";
+import {AnwesenheitenService  } from "src/app/services/anwesenheiten.service";
+import {PersonenService  } from "src/app/services/personen.service";
 import { ToastService } from "src/app/services/toast.service";
 import { Anwesenheit } from "src/app/models/anwesenheit";
 import { Person } from "src/app/models/person";
@@ -19,24 +20,37 @@ export class AnwesenheitDetailsPage implements OnInit {
   anwesenheitID;
 
   constructor(
-    private as: AnwesenheitenService,
+    private db: AnwesenheitenService,
     private ts: ToastService,
-    private mc: ModalController
+    public mc: ModalController,
+    private person: PersonenService
   ) {}
 
   ngOnInit() {
-    this.as.getAnwesenheiten().subscribe((anwesenheiten) => {
-      this.anwesenheiten = anwesenheiten;
-    });
-
-    this.as
+    this.db
       .getAnwesenheitFehlend(this.anwesenheitID)
       .subscribe((anwesenheitFehlend) => {
         this.anwesenheitFehlend = anwesenheitFehlend;
+        console.log(this.anwesenheitID);
+        //this.anwesenheiten.sort(function (a, b) {
+        //  return b.erfasstAm < a.erfasstAm ? -1 : 1;
+        //});
       });
+
+    this.person.getPersonen().subscribe((personenDetails) => {
+      this.personenDetails = personenDetails;
+    });
+
+    this.db.getAnwesenheiten().subscribe((anwesenheiten) => {
+      this.anwesenheiten = anwesenheiten;
+
+      //this.anwesenheiten.sort(function (a, b) {
+      //  return b.erfasstAm < a.erfasstAm ? -1 : 1;
+      //});
+    });
   }
 
-  closeModal() {
+  CloseModal() {
     this.mc.dismiss();
   }
 }
