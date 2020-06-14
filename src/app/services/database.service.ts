@@ -27,7 +27,7 @@ export class DatabaseService {
   msgCollection: AngularFirestoreCollection<Message>;
 
   constructor(public fs: AngularFirestore) {
-    this.personenCollection = this.fs.collection("Personen", (ref) =>
+    this.personenCollection = this.fs.collection("personen", (ref) =>
       ref.orderBy("vorname", "asc")
     );
 
@@ -72,17 +72,21 @@ export class DatabaseService {
     return this.personen;
   }
 
+  getPersonWithID(id: string){
+    
+  }
+
   addPerson(person: Person) {
     this.personenCollection.add(person);
   }
 
   updatePerson(person: Person) {
-    this.personDoc = this.fs.doc("Personen/" + person.id);
+    this.personDoc = this.fs.doc("personen/" + person.id);
     this.personDoc.update(person);
   }
 
   deletePerson(person: Person) {
-    this.personDoc = this.fs.doc("Personen/" + person.id);
+    this.personDoc = this.fs.doc("personen/" + person.id);
     this.personDoc.delete();
   }
 

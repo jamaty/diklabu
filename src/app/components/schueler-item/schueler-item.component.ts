@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { DatabaseService } from "src/app/services/database.service";
+import { Person } from '../../models/person';
 
 @Component({
   selector: 'app-schueler-item',
@@ -6,12 +8,22 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./schueler-item.component.scss'],
 })
 export class SchuelerItemComponent implements OnInit {
-  @Input() vorname = '';
-  @Input() nachname = '';
-  @Input() image = '';
+  @Input() personID = '';
 
-  constructor() { }
+  schueler_all : Person[];
+  schueler: Person = {
+    id: '',
+    vorname: '',
+    nachname: '',
+    rolle: 'Schüler',
+    image: ''
+  }
 
-  ngOnInit() {}
+  constructor(private personService : DatabaseService) { }
 
+  ngOnInit() {
+    this.personService.getPersonen().subscribe(personen => {
+      this.schueler_all = personen;      
+    });
+  }
 }
