@@ -49,11 +49,11 @@ export class AnwesenheitPage implements OnInit {
     public mc: ModalController
   ) {}
 
-  async OpenModal(anwesenheit: Anwesenheit) {
+  async openModal(anwesenheit?: Anwesenheit) {
     const modal = await this.mc.create({
       component: AnwesenheitDetailsPage,
       componentProps: {
-        anwesenheitID: anwesenheit.id,
+        anwesenheit: anwesenheit,
       },
     });
     return await modal.present();
