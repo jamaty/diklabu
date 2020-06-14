@@ -9,6 +9,7 @@ export class SchuelerItemComponent implements OnInit {
   @Input() vorname = '';
   @Input() nachname = '';
   @Input() image = '';
+  @Input() id='';
 
   constructor() { }
 

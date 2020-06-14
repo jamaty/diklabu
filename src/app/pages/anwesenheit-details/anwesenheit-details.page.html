@@ -6,29 +6,14 @@
     >
   </ion-item>
 
-  
-  <h3 style="margin-left:10px;">Anwesend</h3>
-    <div *ngFor="let a of anwesenheitFehlend">
-    <ion-item>
-    <ion-avatar>
-    <img src="../../../assets/img/schueler.jpg">
-
-    </ion-avatar> 
-    <ion-label>{{a.person}}</ion-label>
-    <ion-toggle checked role="checkbox"></ion-toggle>
-  </ion-item>
-  </div>
-
-
   <h3 style="margin-left:10px;">Fehlend</h3>
     <div *ngFor="let a of anwesenheitFehlend">
-    <ion-item>
-    <ion-avatar>
-    <img src="../../../assets/img/schueler.jpg">
-
-    </ion-avatar> 
-    <ion-label>{{a.person}}</ion-label>
-    <ion-toggle checked role="checkbox"></ion-toggle>
-  </ion-item>
+      <app-schueler-item id={{a.id}}>
+        
+        
+      </app-schueler-item> 
   </div>
+
+
+  
 </ion-content>
