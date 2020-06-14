@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { KrankmeldungPageRoutingModule } from './krankmeldung-routing.module';
 import { KrankmeldungPage } from './krankmeldung.page';
 import { DiklabuModule } from '../../components/diklabu.module';
+import { SchuelerItemComponent } from 'src/app/components/schueler-item/schueler-item.component';
 
 
 @NgModule({
@@ -16,6 +17,6 @@ import { DiklabuModule } from '../../components/diklabu.module';
     DiklabuModule,
     KrankmeldungPageRoutingModule
   ],
-  declarations: [KrankmeldungPage]
+  declarations: [KrankmeldungPage, SchuelerItemComponent]
 })
 export class KrankmeldungPageModule {}

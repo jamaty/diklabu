@@ -6,14 +6,8 @@
     >
   </ion-item>
 
-  <h3 style="margin-left:10px;">Fehlend</h3>
-    <div *ngFor="let a of anwesenheitFehlend">
-      <app-schueler-item id={{a.id}}>
-        
-        
-      </app-schueler-item> 
+  <h3 style="margin-left: 10px;">Fehlend</h3>
+  <div *ngFor="let a of anwesenheitFehlend">
+    <app-schueler-item id="{{a.id}}"> </app-schueler-item>
   </div>
-
-
-  
 </ion-content>

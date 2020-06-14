@@ -1,10 +1,12 @@
-<ion-item>
-  <ion-avatar slot="start">
-    <img src="{{ image }}">
-  </ion-avatar>
-  <ion-label>
-    <h1>{{id}}</h1>
-    <h2>{{vorname + ' ' + nachname}}</h2>
-  </ion-label> 
-  <ion-toggle checked></ion-toggle>   
-</ion-item>
+<ng-container *ngFor="let schuelers of schueler_all">
+  <ion-item *ngIf="schuelers.id === personID">
+    <ion-avatar slot="start">
+      <img src="{{ schuelers.image }}" />
+    </ion-avatar>
+    <ion-label>
+      <h2>{{ schuelers.vorname + " " + schuelers.nachname }}</h2>
+      <h3>{{ schuelers.rolle }}</h3>
+    </ion-label>
+    <ion-toggle checked></ion-toggle>
+  </ion-item>
+</ng-container>
