@@ -6,7 +6,8 @@
     <ion-label>
       <h2>{{ schuelers.vorname + " " + schuelers.nachname }}</h2>
       <h3>{{ schuelers.rolle }}</h3>
+    
     </ion-label>
-    <ion-toggle checked></ion-toggle>
+    <ion-toggle  checked (ionChange)="anwesenheitChange(personID,anwesenheitID,anwesenheitMode)"></ion-toggle>
   </ion-item>
 </ng-container>

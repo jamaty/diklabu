@@ -1,6 +1,13 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { PersonenService } from "src/app/services/personen.service";
+import {AnwesenheitenService  } from "src/app/services/anwesenheiten.service";
 import { Person } from "../../models/person";
+import { Anwesenheit } from "../../models/anwesenheit";
+import { AngularFirestore } from "@angular/fire/firestore";
+import { Firebase } from "@angular/fire/firebase.app.module;
+import { FirebaseApp } from '@angular/fire/firebase.app.module';
+import * as functions from 'firebase-functions';
+import * as admin from 'firebase-admin';
 
 @Component({
   selector: "app-schueler-item",
@@ -9,6 +16,9 @@ import { Person } from "../../models/person";
 })
 export class SchuelerItemComponent implements OnInit {
   @Input() personID = "";
+  @Input() anwesenheitID="";
+  @Input() anwesenheitMode="";
+  anwesenheit: Anwesenheit[];
 
   schueler_all: Person[];
   schueler: Person = {
@@ -19,11 +29,19 @@ export class SchuelerItemComponent implements OnInit {
     image: "",
   };
 
-  constructor(private personService: PersonenService) {}
+  constructor(public firebase:FirebaseApp,public fs: AngularFirestore, private personService: PersonenService, private anwesenheitService: AnwesenheitenService) {}
 
   ngOnInit() {
     this.personService.getPersonen().subscribe((personen) => {
       this.schueler_all = personen;
     });
+  }
+
+
+  anwesenheitChange(personID,anwesenheitID,anwesenheitMode)
+  {
+    var ref = this.fs.collection("anwesenheiten").doc( anwesenheitID);
+    
+   
   }
 }

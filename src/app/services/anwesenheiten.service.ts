@@ -15,11 +15,12 @@ export class AnwesenheitenService {
   anwesenheiten: Observable<Anwesenheit[]>;
 
   anwesenheitFehlendCollection: AngularFirestoreCollection<Anwesenheit>;
+  anwesenheitFehlendDoc: AngularFirestoreDocument<Anwesenheit>;
   anwesenheitFehlend: Observable<Anwesenheit[]>;
 
   constructor(public fs: AngularFirestore) {
     this.anwesenheitenCollection = this.fs.collection("anwesenheiten", (ref) =>
-      ref.orderBy("erfasstAm", "desc")
+      ref.orderBy("erfasstAm", "asc")
     );
 
     // next
@@ -41,6 +42,7 @@ export class AnwesenheitenService {
   }
   getAnwesenheiten() {
     return this.anwesenheiten;
+    
   }
 
   addAnwesenheit(anwesenheit: Anwesenheit) {
@@ -60,12 +62,17 @@ export class AnwesenheitenService {
   fetchMoreAnwesenheiten() {
     this.anwesenheiten;
   }
+  
 
   getAnwesenheitFehlend(anwesenheitID: Anwesenheit) {
+
+    
     this.anwesenheitFehlendCollection = this.fs.collection(
-      "anwesenheiten/" + anwesenheitID + "/fehlend",
+      "anwesenheiten/"+anwesenheitID+"/fehlend" ,
       (ref) => ref
     );
+  
+
     this.anwesenheitFehlend = this.anwesenheitFehlendCollection
       .snapshotChanges()
       .pipe(
@@ -77,7 +84,8 @@ export class AnwesenheitenService {
           });
         })
       );
-
+      
+      console.log(this.anwesenheitFehlend);
     return this.anwesenheitFehlend;
   }
 }

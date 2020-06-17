@@ -14,10 +14,17 @@ import { Person } from "src/app/models/person";
 export class AnwesenheitDetailsPage implements OnInit {
   anwesenheitToEdit: Anwesenheit;
   anwesenheiten: Anwesenheit[];
+  isAnwesend: boolean;
+  fehlendListeArray;
+  fehlendListeArray2;
   anwesenheitFehlend: Anwesenheit[];
   personenDetails: Person[];
   anwesenheit: Anwesenheit;
   anwesenheitID;
+  anwesenheitKlasse;
+  anwesenheitDatum;
+  pageFront;
+  selectedPersonID;
 
   constructor(
     private db: AnwesenheitenService,
@@ -25,21 +32,30 @@ export class AnwesenheitDetailsPage implements OnInit {
     public mc: ModalController,
     private person: PersonenService
   ) {}
-
+  
+  
   ngOnInit() {
     this.db
       .getAnwesenheitFehlend(this.anwesenheitID)
       .subscribe((anwesenheitFehlend) => {
         this.anwesenheitFehlend = anwesenheitFehlend;
-        console.log(this.anwesenheitID);
+
+       
+       
         //this.anwesenheiten.sort(function (a, b) {
         //  return b.erfasstAm < a.erfasstAm ? -1 : 1;
         //});
       });
 
+    
+      
+    
+
     this.person.getPersonen().subscribe((personenDetails) => {
       this.personenDetails = personenDetails;
+     
     });
+
 
     this.db.getAnwesenheiten().subscribe((anwesenheiten) => {
       this.anwesenheiten = anwesenheiten;
@@ -49,6 +65,25 @@ export class AnwesenheitDetailsPage implements OnInit {
       //});
     });
   }
+
+ 
+
+  CheckAnwesenheit(personenID:number)
+
+  {
+    this.fehlendListeArray= this.anwesenheiten.find(anwesenheiten=>anwesenheiten.id==="1").fehlendListe;
+    this.fehlendListeArray2= this.anwesenheiten.find(anwesenheiten=>anwesenheiten.id==="1").unentschuldigtListe;
+   console.log(this.fehlendListeArray.indexOf(personenID));
+    
+    if(this.fehlendListeArray.indexOf(personenID)==-1 && this.fehlendListeArray2.indexOf(personenID)==-1)
+    {
+      return true;
+    }
+    else{ return false;}
+  
+  }
+
+
 
   CloseModal() {
     this.mc.dismiss();

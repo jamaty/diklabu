@@ -54,6 +54,8 @@ export class AnwesenheitPage implements OnInit {
       component: AnwesenheitDetailsPage,
       componentProps: {
         anwesenheitID: anwesenheit.id,
+        anwesenheitDatum: anwesenheit.erfasstAm,
+        anwesenheitKlasse: anwesenheit.klasse
       },
     });
     return await modal.present();
