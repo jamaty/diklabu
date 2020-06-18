@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { PersonenService } from "src/app/services/personen.service";
-<<<<<<< HEAD
 import {AnwesenheitenService  } from "src/app/services/anwesenheiten.service";
 import { Person } from "../../models/person";
 import { Anwesenheit } from "../../models/anwesenheit";
@@ -10,8 +9,6 @@ import * as firebase2 from "firebase/app";
 // Add the Firebase services that you want to use
 import "firebase/auth";
 import "firebase/firestore";
-=======
->>>>>>> develop
 
 @Component({
   selector: "app-schueler-item",
