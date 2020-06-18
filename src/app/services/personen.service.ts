@@ -33,6 +33,10 @@ export class PersonenService {
     return this.personen;
   }
 
+  getPersonById(id){
+    return this.fs.collection('personen').doc(id).valueChanges();
+  }
+
   addPerson(person: Person) {
     this.personenCollection.add(person);
   }
