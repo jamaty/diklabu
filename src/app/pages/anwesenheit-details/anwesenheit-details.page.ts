@@ -76,7 +76,7 @@ export class AnwesenheitDetailsPage implements OnInit {
 
  CreateAnwesenheit()
  {
-  console.log(this.newAnwesenheit);
+ 
  }
 
   CheckAnwesenheit(personenID:number)
