@@ -85,7 +85,7 @@ export class AnwesenheitenService {
         })
       );
       
-      console.log(this.anwesenheitFehlend);
+ 
     return this.anwesenheitFehlend;
   }
 }

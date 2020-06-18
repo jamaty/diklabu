@@ -31,7 +31,30 @@ export class SchuelerItemComponent implements OnInit {
     });
   }
 
-  update(event){
-    console.log("Test"); 
+  update(personID, anwesenheitID,anwesenheitMode)
+  {
+    var ref = this.fs.collection("anwesenheiten").doc(anwesenheitID);
+
+    switch(anwesenheitMode)
+    {
+      case "anwesend":  ref.update
+                            ({
+                              unentschuldigtListe:firebase2.firestore.FieldValue.arrayUnion(personID)
+                            });
+                    break;
+      case "fehlend":  ref.update
+                            ({
+                              unentschuldigtListe:firebase2.firestore.FieldValue.arrayRemove(personID)
+                            });
+                            break;
+      case "krank": 
+                          
+                         ref.update
+                            ({
+                              fehlendListe:firebase2.firestore.FieldValue.arrayRemove(personID)
+                            });
+                            break;                      
+    }
+  
   }
 }

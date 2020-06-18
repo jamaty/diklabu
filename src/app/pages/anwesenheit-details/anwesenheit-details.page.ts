@@ -25,16 +25,31 @@ export class AnwesenheitDetailsPage implements OnInit {
   anwesenheitDatum;
   pageFront;
   selectedPersonID;
-
+  anwesenheitMode;
+  todaysDate;
+  newAnwesenheit: Anwesenheit = {
+    id: "",
+    erfasstAm: this.todaysDate,
+    klasse: "",
+    unentschuldigtListe: "",
+    unentschuldigt:0
+    
+  };
   constructor(
     private db: AnwesenheitenService,
     private ts: ToastService,
     public mc: ModalController,
     private person: PersonenService
+    
   ) {}
   
   
   ngOnInit() {
+ 
+    this.todaysDate=new Date().toString();
+    
+    if(this.anwesenheitMode!='new')
+    {
     this.db
       .getAnwesenheitFehlend(this.anwesenheitID)
       .subscribe((anwesenheitFehlend) => {
@@ -48,7 +63,7 @@ export class AnwesenheitDetailsPage implements OnInit {
       });
 
     
-      
+    } 
     
 
     this.person.getPersonen().subscribe((personenDetails) => {
@@ -66,14 +81,17 @@ export class AnwesenheitDetailsPage implements OnInit {
     });
   }
 
- 
+ CreateAnwesenheit()
+ {
+  console.log(this.newAnwesenheit);
+ }
 
   CheckAnwesenheit(personenID:number)
 
   {
     this.fehlendListeArray= this.anwesenheiten.find(anwesenheiten=>anwesenheiten.id==="1").fehlendListe;
     this.fehlendListeArray2= this.anwesenheiten.find(anwesenheiten=>anwesenheiten.id==="1").unentschuldigtListe;
-   console.log(this.fehlendListeArray.indexOf(personenID));
+
     
     if(this.fehlendListeArray.indexOf(personenID)==-1 && this.fehlendListeArray2.indexOf(personenID)==-1)
     {

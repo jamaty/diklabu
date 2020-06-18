@@ -5,5 +5,5 @@
     <ion-label>
       <h2>{{schueler_data?.vorname}} {{schueler_data?.nachname}}</h2>
     </ion-label>
-    <ion-toggle checked (ionChange)="update($event)"></ion-toggle>
+    <ion-toggle checked (ionChange)="update(personID,anwesenheitID,anwesenheitMode)"></ion-toggle>
 </ion-item>
