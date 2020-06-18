@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { PersonenService } from "src/app/services/personen.service";
-import { Person } from "../../models/person";
 
 @Component({
   selector: "app-schueler-item",
@@ -10,20 +9,17 @@ import { Person } from "../../models/person";
 export class SchuelerItemComponent implements OnInit {
   @Input() personID = "";
 
-  schueler_all: Person[];
-  schueler: Person = {
-    id: "",
-    vorname: "",
-    nachname: "",
-    rolle: "Schüler",
-    image: "",
-  };
+  schueler_data;
 
   constructor(private personService: PersonenService) {}
 
   ngOnInit() {
-    this.personService.getPersonen().subscribe((personen) => {
-      this.schueler_all = personen;
+    this.personService.getPersonById(this.personID).subscribe(res => {
+      this.schueler_data = res;
     });
+  }
+
+  update(event){
+    console.log("Test"); 
   }
 }
