@@ -7,13 +7,13 @@
       </ion-button>
     </ion-buttons>
  
-    <ion-item >Erfasst am: <ion-datetime [(ngModel)]="newAnwesenheit.erfasstAm" value="{{todaysDate}}" display-timezone="utc"></ion-datetime></ion-item>
+    <ion-item >Erfasst am: <ion-datetime  value="{{todaysDate}}" display-timezone="utc"></ion-datetime></ion-item>
     
     <ion-item>
       <ion-label>Klasse </ion-label>
         
       
-     <ion-select [(ngModel)]="newAnwesenheit.klasse" value="1C" interface="popover" >
+     <ion-select  value="1C" interface="popover" >
        <ion-select-option value="1A">1A</ion-select-option>
        <ion-select-option value="1B">1B</ion-select-option>
        <ion-select-option value="1C">1C</ion-select-option>

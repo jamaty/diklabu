@@ -27,14 +27,7 @@ export class AnwesenheitDetailsPage implements OnInit {
   selectedPersonID;
   anwesenheitMode;
   todaysDate;
-  newAnwesenheit: Anwesenheit = {
-    id: "",
-    erfasstAm: this.todaysDate,
-    klasse: "",
-    unentschuldigtListe: "",
-    unentschuldigt:0
-    
-  };
+
   constructor(
     private db: AnwesenheitenService,
     private ts: ToastService,
