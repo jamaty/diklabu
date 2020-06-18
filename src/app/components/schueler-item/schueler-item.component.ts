@@ -4,10 +4,11 @@ import {AnwesenheitenService  } from "src/app/services/anwesenheiten.service";
 import { Person } from "../../models/person";
 import { Anwesenheit } from "../../models/anwesenheit";
 import { AngularFirestore } from "@angular/fire/firestore";
-import { Firebase } from "@angular/fire/firebase.app.module;
-import { FirebaseApp } from '@angular/fire/firebase.app.module';
-import * as functions from 'firebase-functions';
-import * as admin from 'firebase-admin';
+import * as firebase2 from "firebase/app";
+
+// Add the Firebase services that you want to use
+import "firebase/auth";
+import "firebase/firestore";
 
 @Component({
   selector: "app-schueler-item",
@@ -29,7 +30,7 @@ export class SchuelerItemComponent implements OnInit {
     image: "",
   };
 
-  constructor(public firebase:FirebaseApp,public fs: AngularFirestore, private personService: PersonenService, private anwesenheitService: AnwesenheitenService) {}
+  constructor(public fs: AngularFirestore, private personService: PersonenService, private anwesenheitService: AnwesenheitenService) {}
 
   ngOnInit() {
     this.personService.getPersonen().subscribe((personen) => {
@@ -41,6 +42,19 @@ export class SchuelerItemComponent implements OnInit {
   anwesenheitChange(personID,anwesenheitID,anwesenheitMode)
   {
     var ref = this.fs.collection("anwesenheiten").doc( anwesenheitID);
+    
+    if(anwesenheitMode==="fehlend")
+    {
+      ref.update({
+        fehlendListe:firebase2.firestore.FieldValue.arrayUnion(personID)
+      });
+    }
+    else
+    {
+      ref.update({
+        fehlendListe:firebase2.firestore.FieldValue.arrayRemove(personID)
+      });
+    }
     
    
   }
