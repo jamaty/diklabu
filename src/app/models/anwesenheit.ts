@@ -9,7 +9,6 @@ export interface Anwesenheit {
   fehlend: number;
   unentschuldigt: number;
   person: number;
-  fehlendListe:[];
-  unentschuldigtListe:[];
+  fehlendListe: [];
+  unentschuldigtListe: [];
 }
-
