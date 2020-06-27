@@ -4,8 +4,6 @@ on:
     branches:
       - "testing**"
 
-    paths-ignore:
-      - ".github/**"
 
 jobs:
   build:
