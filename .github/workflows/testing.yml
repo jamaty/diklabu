@@ -2,7 +2,7 @@ name: Deploy Testing
 on:
   push:
     branches:
-      - "testing/*"
+      - "testing/0.1.3"
 
     paths-ignore:
       - ".github/**"
