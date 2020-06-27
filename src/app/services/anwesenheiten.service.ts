@@ -4,49 +4,24 @@ import { AngularFirestoreCollection } from "@angular/fire/firestore";
 import { AngularFirestoreDocument } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { Person } from "../models/person";
-import { Message } from "../models/message";
 import { Anwesenheit } from "../models/anwesenheit";
 
 @Injectable({
   providedIn: "root",
 })
-export class DatabaseService {
-  personenCollection: AngularFirestoreCollection<Person>;
-  personDoc: AngularFirestoreDocument<Person>;
-  personen: Observable<Person[]>;
-
+export class AnwesenheitenService {
   anwesenheitenCollection: AngularFirestoreCollection<Anwesenheit>;
   anwesenheitDoc: AngularFirestoreDocument<Anwesenheit>;
   anwesenheiten: Observable<Anwesenheit[]>;
-  anwesenheitFehlendCollection: AngularFirestoreCollection<Anwesenheit>;
-  anwesenheitFehlend: Observable<Anwesenheit[]>;
- 
-  
 
-  msgCollection: AngularFirestoreCollection<Message>;
+  anwesenheitFehlendCollection: AngularFirestoreCollection<Anwesenheit>;
+  anwesenheitFehlendDoc: AngularFirestoreDocument<Anwesenheit>;
+  anwesenheitFehlend: Observable<Anwesenheit[]>;
 
   constructor(public fs: AngularFirestore) {
-    this.personenCollection = this.fs.collection("Personen", (ref) =>
-      ref.orderBy("vorname", "asc")
-    );
-
-    this.personen = this.personenCollection.snapshotChanges().pipe(
-      map((changes) => {
-        return changes.map((a) => {
-          const data = a.payload.doc.data() as Person;
-          data.id = a.payload.doc.id;
-          return data;
-        });
-      })
-    );
-
     this.anwesenheitenCollection = this.fs.collection("anwesenheiten", (ref) =>
-      ref.orderBy("erfasstAm", "desc")
+      ref.orderBy("erfasstAm", "asc")
     );
-   
-
-
 
     // next
     // const lastAnwesenheit = this.anwesenheiten[1];
@@ -64,52 +39,10 @@ export class DatabaseService {
         });
       })
     );
-
-    this.msgCollection = this.fs.collection("messages");
   }
-
-  getPersonen() {
-    return this.personen;
-  }
-
-  addPerson(person: Person) {
-    this.personenCollection.add(person);
-  }
-
-  updatePerson(person: Person) {
-    this.personDoc = this.fs.doc("Personen/" + person.id);
-    this.personDoc.update(person);
-  }
-
-  deletePerson(person: Person) {
-    this.personDoc = this.fs.doc("Personen/" + person.id);
-    this.personDoc.delete();
-  }
-
   getAnwesenheiten() {
     return this.anwesenheiten;
-  }
-
-  fetchMoreAnwesenheiten() {
-    this.anwesenheiten;
-  }
-  getAnwesenheitFehlend(anwesenheitID: Anwesenheit)
-  {
     
-
-    this.anwesenheitFehlendCollection = this.fs.collection("anwesenheiten/"+anwesenheitID+"/fehlend", (ref) => ref
-    );
-    this.anwesenheitFehlend = this.anwesenheitFehlendCollection.snapshotChanges().pipe(
-      map((changes) => {
-        return changes.map((a) => {
-          const data = a.payload.doc.data() as Anwesenheit;
-          data.id = a.payload.doc.id;
-          return data;
-        });
-      })
-    );
-
-    return this.anwesenheitFehlend;
   }
 
   addAnwesenheit(anwesenheit: Anwesenheit) {
@@ -126,7 +59,33 @@ export class DatabaseService {
     this.anwesenheitDoc.delete();
   }
 
-  addMessage(msg: Message) {
-    this.msgCollection.add(msg);
+  fetchMoreAnwesenheiten() {
+    this.anwesenheiten;
+  }
+  
+
+  getAnwesenheitFehlend(anwesenheitID: Anwesenheit) {
+
+    
+    this.anwesenheitFehlendCollection = this.fs.collection(
+      "anwesenheiten/"+anwesenheitID+"/fehlend" ,
+      (ref) => ref
+    );
+  
+
+    this.anwesenheitFehlend = this.anwesenheitFehlendCollection
+      .snapshotChanges()
+      .pipe(
+        map((changes) => {
+          return changes.map((a) => {
+            const data = a.payload.doc.data() as Anwesenheit;
+            data.id = a.payload.doc.id;
+            return data;
+          });
+        })
+      );
+      
+ 
+    return this.anwesenheitFehlend;
   }
 }

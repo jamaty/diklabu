@@ -5,7 +5,7 @@ import {
   IonItemSliding,
   ModalController,
 } from "@ionic/angular";
-import { DatabaseService } from "src/app/services/database.service";
+import { AnwesenheitenService } from "src/app/services/anwesenheiten.service";
 import { ToastService } from "src/app/services/toast.service";
 import { Anwesenheit } from "src/app/models/anwesenheit";
 import { AnwesenheitDetailsPage } from "../anwesenheit-details/anwesenheit-details.page";
@@ -43,7 +43,7 @@ export class AnwesenheitPage implements OnInit {
   };
 
   constructor(
-    private db: DatabaseService,
+    private as: AnwesenheitenService,
     private ts: ToastService,
     private ac: AlertController,
     public mc: ModalController
@@ -60,7 +60,7 @@ export class AnwesenheitPage implements OnInit {
   }
 
   ngOnInit() {
-    this.db.getAnwesenheiten().subscribe((anwesenheiten) => {
+    this.as.getAnwesenheiten().subscribe((anwesenheiten) => {
       this.anwesenheiten = anwesenheiten;
       //this.anwesenheiten.sort(function (a, b) {
       //  return b.erfasstAm < a.erfasstAm ? -1 : 1;
@@ -85,7 +85,7 @@ export class AnwesenheitPage implements OnInit {
   }
 
   updateAnwesenheit(anwesenheit: Anwesenheit) {
-    this.db.updateAnwesenheit(anwesenheit);
+    this.as.updateAnwesenheit(anwesenheit);
     this.clearState();
   }
 
@@ -101,7 +101,7 @@ export class AnwesenheitPage implements OnInit {
           text: "Bestätigen",
           handler: () => {
             this.clearState();
-            this.db.deleteAnwesenheit(anwesenheit);
+            this.as.deleteAnwesenheit(anwesenheit);
             alert.dismiss();
           },
         },
@@ -124,7 +124,7 @@ export class AnwesenheitPage implements OnInit {
 
   loadData(event) {
     // TODO
-    this.db.fetchMoreAnwesenheiten();
+    this.as.fetchMoreAnwesenheiten();
 
     setTimeout(() => {
       console.log("Done");

@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DatabaseService } from './database.service';
+import { AnwesenheitenService } from './anwesenheiten.service';
 
-describe('DatabaseService', () => {
+describe('AnwesenheitenService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: DatabaseService = TestBed.get(DatabaseService);
+    const service: AnwesenheitenService = TestBed.get(AnwesenheitenService);
     expect(service).toBeTruthy();
   });
 });

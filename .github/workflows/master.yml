@@ -1,10 +1,11 @@
-name: Build and Deploy Master
+name: Deploy Master
 on:
   push:
     branches:
-      - master
-    paths-ignore: 
-      - '.github/**'
+      - "master"
+
+    paths-ignore:
+      - ".github/**"
 
 jobs:
   build:
