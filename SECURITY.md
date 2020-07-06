@@ -2,33 +2,33 @@
 
 ## Supported Versions
 
-| Plattform         | Supported          |
-| ----------------- | ------------------ |
-| android 80        | :white_check_mark: |       
-| baidu 7.12        | :white_check_mark: |       
-| chrome 80         | :white_check_mark: |   
-| chrome 79         | :white_check_mark: |   
-| edge 80           | :white_check_mark: |   
-| edge 79           | :white_check_mark: |   
-| edge 18           | :white_check_mark: |   
-| firefox 74        | :white_check_mark: |       
-| firefox 73        | :white_check_mark: |       
-| firefox 72        | :white_check_mark: |       
-| firefox 68        | :white_check_mark: |       
-| ios_saf 13.3      | :white_check_mark: |       
-| ios_saf 13.2      | :white_check_mark: |       
-| ios_saf 13.0-13.1 | :white_check_mark: |           
-| ios_saf 12.2-12.4 | :white_check_mark: |           
-| kaios 2.5         | :white_check_mark: |   
-| op_mini all       | :white_check_mark: |       
-| op_mob 46         | :white_check_mark: |   
-| opera 66          | :white_check_mark: |   
-| opera 65          | :white_check_mark: |   
-| safari 13         | :white_check_mark: |   
-| safari 12.1       | :white_check_mark: |       
-| samsung 11.1      | :white_check_mark: |       
-| samsung 10.1      | :white_check_mark: |
-| IE 9-11           | :x:                |       
+| Plattform         | Supported |
+| ----------------- | --------- |
+| android 80        | ✅        |
+| baidu 7.12        | ✅        |
+| chrome 80         | ✅        |
+| chrome 79         | ✅        |
+| edge 80           | ✅        |
+| edge 79           | ✅        |
+| edge 18           | ✅        |
+| firefox 74        | ✅        |
+| firefox 73        | ✅        |
+| firefox 72        | ✅        |
+| firefox 68        | ✅        |
+| ios_saf 13.3      | ✅        |
+| ios_saf 13.2      | ✅        |
+| ios_saf 13.0-13.1 | ✅        |
+| ios_saf 12.2-12.4 | ✅        |
+| kaios 2.5         | ✅        |
+| op_mini all       | ✅        |
+| op_mob 46         | ✅        |
+| opera 66          | ✅        |
+| opera 65          | ✅        |
+| safari 13         | ✅        |
+| safari 12.1       | ✅        |
+| samsung 11.1      | ✅        |
+| samsung 10.1      | ✅        |
+| IE 9-11           | ❌        |
 
 ## Reporting a Vulnerability
 

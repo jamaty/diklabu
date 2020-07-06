@@ -1,34 +1,99 @@
-<ion-content>
-  <ion-item>
-    <ion-label>Anwesenheit Details</ion-label>
-    <ion-button (click)="CloseModal()" size="small" slot="end"
-      >close</ion-button
-    >
-  </ion-item>
+
+<ion-content *ngIf="anwesenheitMode==='new'">
+  <ion-toolbar>
+    <ion-buttons slot="primary">
+      <ion-button (click)="CloseModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+ 
+    <ion-item >Erfasst am: <ion-datetime  value="{{todaysDate}}" display-timezone="utc"></ion-datetime></ion-item>
+    
+    <ion-item>
+      <ion-label>Klasse </ion-label>
+        
+      
+     <ion-select  value="1C" interface="popover" >
+       <ion-select-option value="1A">1A</ion-select-option>
+       <ion-select-option value="1B">1B</ion-select-option>
+       <ion-select-option value="1C">1C</ion-select-option>
+       <ion-select-option value="1D">1D</ion-select-option>
+     </ion-select>
+    </ion-item>
+  </ion-toolbar>
+  
+  
+  
+    
+  
+    <h4 style="margin-left: 10px;">Anwesend</h4>
+    
+       <div *ngFor="let b of personenDetails">
+        <div *ngIf="b.rolle==='Schüler'">
+            <div >
+               <app-schueler-item  anwesenheitMode="anwesend" personID="{{b.id}}" anwesenheitID="{{anwesenheitID}}"> </app-schueler-item>
+            </div>
+        </div>
+        </div>
+ 
+    <ion-row>
+      <ion-col  style="text-align: center;">
+        <ion-button (click)="CreateAnwesenheit()">Schulbeginn
+        </ion-button>
+    </ion-col>
+    </ion-row>
+
+</ion-content>
+
+<ion-content *ngIf="anwesenheitMode==='notnew'">
+<ion-toolbar>
+  <ion-buttons slot="primary">
+    <ion-button (click)="CloseModal()">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-item readonly >Erfasst am: <ion-label> {{anwesenheitDatum | date:"dd/MM/yyyy"}}</ion-label></ion-item>
+  <ion-item><h4>Klasse {{anwesenheitKlasse}}</h4></ion-item>
+</ion-toolbar>
+
+
 
   
-  <h3 style="margin-left:10px;">Anwesend</h3>
-    <div *ngFor="let a of anwesenheitFehlend">
-    <ion-item>
-    <ion-avatar>
-    <img src="../../../assets/img/schueler.jpg">
 
-    </ion-avatar> 
-    <ion-label>{{a.person}}</ion-label>
-    <ion-toggle checked role="checkbox"></ion-toggle>
-  </ion-item>
+  <h4 style="margin-left: 10px;">Anwesend</h4>
+
+     <div *ngFor="let b of personenDetails">
+      <div *ngIf="b.rolle==='Schüler'">
+          <div *ngIf="CheckAnwesenheit(b.id);fehlend">
+             <app-schueler-item  anwesenheitMode="anwesend" personID="{{b.id}}" anwesenheitID="{{anwesenheitID}}"> </app-schueler-item>
+          </div>
+      </div>
+      </div>
+ <ng-template #fehlend></ng-template>
+  <h4 style="margin-left: 10px;">Krankgemeldet/Entschuldigt</h4>
+  <div *ngFor="let a of anwesenheiten">
+  <div *ngIf="a.id===anwesenheitID">
+    <div *ngFor="let b of a.fehlendListe">
+      <app-schueler-item anwesenheitMode="krank" personID="{{b}}" anwesenheitID="{{anwesenheitID}}"> </app-schueler-item>
+    </div>
+  </div> 
+  
   </div>
 
-
-  <h3 style="margin-left:10px;">Fehlend</h3>
-    <div *ngFor="let a of anwesenheitFehlend">
-    <ion-item>
-    <ion-avatar>
-    <img src="../../../assets/img/schueler.jpg">
-
-    </ion-avatar> 
-    <ion-label>{{a.person}}</ion-label>
-    <ion-toggle checked role="checkbox"></ion-toggle>
-  </ion-item>
+  <h4 style="margin-left: 10px;">Unentschuldigt</h4>
+  <div *ngFor="let a of anwesenheiten">
+  <div *ngIf="a.id===anwesenheitID">
+    <div *ngFor="let b of a.unentschuldigtListe">
+      <app-schueler-item anwesenheitMode="fehlend" personID="{{b}}" anwesenheitID="{{anwesenheitID}}"> </app-schueler-item>
+    </div>
+  </div> 
+  
   </div>
+  <ion-row>
+    <ion-col  style="text-align: center;">
+      <ion-button (click)="CloseModal()">Schulbeginn
+      </ion-button>
+  </ion-col>
+  </ion-row>
 </ion-content>
+

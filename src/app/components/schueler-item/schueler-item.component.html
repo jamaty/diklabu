@@ -1,0 +1,9 @@
+<ion-item>
+    <ion-avatar slot="start">
+      <img src="{{schueler_data?.image}}" />
+    </ion-avatar>
+    <ion-label>
+      <h2>{{schueler_data?.vorname}} {{schueler_data?.nachname}}</h2>
+    </ion-label>
+    <ion-toggle checked (ionChange)="update(personID,anwesenheitID,anwesenheitMode)"></ion-toggle>
+</ion-item>

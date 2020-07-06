@@ -1,4 +1,7 @@
 <ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
   <ion-buttons slot="primary">
     <ion-button (click)="toggleInfiniteScroll()">
       <ion-icon
@@ -61,15 +64,15 @@
       <ion-item-sliding #slidingItem>
         <ion-item-options
           side="start"
-          (ionSwipe)="editAnwesenheit(slidingItem, a)"
+          (ionSwipe)="openModal('notnew',a)"
         >
-          <ion-item-option (click)="editAnwesenheit(slidingItem, a)" expandable>
+          <ion-item-option (click)="openModal('notnew',a)" expandable>
             <ion-icon slot="icon-only" name="pencil"></ion-icon>
             Ändern
           </ion-item-option>
         </ion-item-options>
 
-        <ion-item button (click)="OpenModal(a)" detail>
+        <ion-item button (click)="openModal('notnew',a)" detail>
           <ion-thumbnail slot="start">
             <img src="{{a.klasseBild}}" />
           </ion-thumbnail>
@@ -115,8 +118,10 @@
   </ion-infinite-scroll>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button>
-      <ion-icon (click)="OpenModal()" name="add"></ion-icon>
-    </ion-fab-button>
+    
+      <ion-fab-button button (click)="openModal('new','')">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+  
   </ion-fab>
 </ion-content>
