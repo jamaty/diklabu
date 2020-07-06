@@ -1,6 +1,6 @@
 {
   "name": "diklabu",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": "jamaty",
   "homepage": "https://diklabu.com/",
   "repository": "https://github.com/jamaty/diklabu.git",
@@ -26,6 +26,7 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
+    "@babel/compat-data": "7.8.0",
     "@capacitor/android": "^2.0.1",
     "@capacitor/core": "2.0.1",
     "@ionic-native/core": "^5.0.7",
@@ -48,6 +49,7 @@
     "@angular/compiler": "~8.2.14",
     "@angular/compiler-cli": "~8.2.14",
     "@angular/language-service": "~8.2.14",
+    "@babel/compat-data": "7.8.0",
     "@capacitor/cli": "2.0.1",
     "@ionic/angular-toolkit": "^2.1.1",
     "@types/jasmine": "~3.3.8",
